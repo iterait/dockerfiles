@@ -1,0 +1,14 @@
+FROM cognexa/cxflow
+MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
+
+RUN pacman -Syyu && \
+    pacman --noconfirm -S openmpi && \
+    ln -s /usr/lib/openmpi/libmpi.so  /usr/lib/openmpi/libmpi.so.12 && \
+    ln -s /usr/lib/openmpi/libmpi_cxx.so  /usr/lib/openmpi/libmpi_cxx.so.1
+
+ENV LD_LIBRARY_PATH /usr/lib/openmpi:$LD_LIBRARY_PATH
+
+RUN pip install https://cntk.ai/PythonWheel/GPU/cntk-2.0-cp36-cp36m-linux_x86_64.whl
+
+# install cxflow-cntk
+RUN pip install git+https://gitlab.com/Cognexa/cxflow-cntk.git

@@ -1,0 +1,14 @@
+FROM cognexa/archlinux
+MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
+
+# install additional packages
+RUN pacman --noconfirm -S python-yaml \
+                          python-ruamel-yaml \
+                          hdf5
+
+# install Fuel                                            
+RUN pip install git+https://github.com/mila-udem/fuel.git 
+
+# install cxflow                                          
+RUN pip install git+https://gitlab.com/Cognexa/cxflow.git && \                                                      
+    pip install git+https://gitlab.com/Cognexa/cxflow-scikit.git                                                    
