@@ -11,4 +11,4 @@ RUN pip install git+https://github.com/mila-udem/fuel.git
 
 # install cxflow                                          
 RUN pip install git+https://github.com/Cognexa/cxflow.git && \
-    pip install git+https://gitlab.com/Cognexa/cxflow-scikit.git                                                    
+    pip install git+https://github.com/Cognexa/cxflow-scikit.git
