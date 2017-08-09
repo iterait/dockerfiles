@@ -1,7 +1,6 @@
 # dockerfiles
-
-- [![Development Status](https://img.shields.io/badge/status-CX%20PoC-brightgreen.svg?style=flat)]()
-- [![Master Developer](https://img.shields.io/badge/master-Petr%20Bělohlávek-lightgrey.svg?style=flat)]()
+[![Development Status](https://img.shields.io/badge/status-CX%20Experimental-brightgreen.svg?style=flat)]()
+[![Master Developer](https://img.shields.io/badge/master-Petr%20Bělohlávek-lightgrey.svg?style=flat)]()
 
 This is a repository contaning the open-source docker images provided by Cognexa Solutions s.r.o.
 
