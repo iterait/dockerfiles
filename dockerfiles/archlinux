@@ -31,5 +31,5 @@ RUN pacman --noconfirm -S git \
 # install GPU related stuff
 RUN pacman --noconfirm -S nvidia \
                           nvidia-utils \
-                          cuda \
-                          cudnn6
+                          cuda
+RUN pacaur --noconfirm -S cudnn6
