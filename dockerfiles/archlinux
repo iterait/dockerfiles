@@ -28,6 +28,8 @@ RUN pacman --noconfirm -S git \
     cd / && \
     rm -rf /build
 
+ENV EDITOR vim
+
 # install GPU related stuff
 RUN pacman --noconfirm -S nvidia \
                           nvidia-utils \
