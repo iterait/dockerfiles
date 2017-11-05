@@ -34,4 +34,4 @@ ENV EDITOR vim
 RUN pacman --noconfirm -S nvidia \
                           nvidia-utils \
                           cuda
-RUN sudo -u aur pacaur --noconfirm -S cudnn6
+RUN sudo -u aur pacaur --noconfirm --noedit -S cudnn6
