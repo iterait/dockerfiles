@@ -7,8 +7,8 @@ RUN pacman --noconfirm -S python-yaml \
                           hdf5
 
 # install Fuel                                            
-RUN pip install git+https://github.com/mila-udem/fuel.git 
+RUN pip install --no-cache-dir git+https://github.com/mila-udem/fuel.git 
 
 # install cxflow                                          
-RUN pip install git+https://github.com/Cognexa/cxflow.git && \
-    pip install git+https://github.com/Cognexa/cxflow-scikit.git
+RUN pip install --no-cache-dir git+https://github.com/Cognexa/cxflow.git && \
+    pip install --no-cache-dir git+https://github.com/Cognexa/cxflow-scikit.git
