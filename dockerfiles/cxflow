@@ -4,7 +4,8 @@ MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 # install additional packages
 RUN pacman --noconfirm -S python-yaml \
                           python-ruamel-yaml \
-                          hdf5
+                          hdf5 \
+    && pacman --noconfirm -Scc
 
 # install Fuel                                            
 RUN pip install --no-cache-dir git+https://github.com/mila-udem/fuel.git 

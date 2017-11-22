@@ -26,12 +26,15 @@ RUN pacman --noconfirm -S git \
     sudo -u aur curl -o PKGBUILD 'https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur' && \
     sudo -u aur makepkg PKGBUILD --skippgpcheck --install --needed --noconfirm && \
     cd / && \
-    rm -rf /build
+    rm -rf /build && \
+    pacman --noconfirm -Scc
 
 ENV EDITOR vim
 
 # install GPU related stuff
 RUN pacman --noconfirm -S nvidia \
                           nvidia-utils \
-                          cuda
+                          cuda \
+    && pacman --noconfirm -Scc
 RUN sudo -u aur pacaur --noconfirm --noedit -S cudnn6
+    && sudo -u aur pacaur --noconfirm -Scc
