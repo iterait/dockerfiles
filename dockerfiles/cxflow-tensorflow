@@ -1,7 +1,9 @@
 FROM cognexa/cxflow
 MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 
-RUN pacman --noconfirm -S python-tensorflow-opt-cuda \
+RUN pacman --noconfirm --needed -S \
+      python-tensorflow-opt-cuda \
+      tensorboard \
     && pacman --noconfirm -Scc
 
 # install cxflow-tensorflow
