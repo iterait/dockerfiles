@@ -1,7 +1,7 @@
 FROM cognexa/cxflow
 MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 
-RUN pacman --noconfirm -S tensorflow-cuda
+RUN pacman --noconfirm -S python-tensorflow-opt-cuda
 
 # install cxflow-tensorflow
 RUN pip install --no-cache-dir git+https://github.com/Cognexa/cxflow-tensorflow.git
