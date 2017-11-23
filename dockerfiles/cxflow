@@ -2,11 +2,22 @@ FROM cognexa/archlinux
 MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 
 # install additional packages
-RUN pacman --noconfirm -S python-yaml \
-                          python-ruamel-yaml \
-                          hdf5 \
+RUN pacman --noconfirm --needed -S \
+      python-babel \
+      python-click \
+      python-matplotlib \
+      python-numpy \
+      python-pyaml \
+      python-requests \
+      python-ruamel-yaml \
+      python-testfixtures \
     && pacman --noconfirm -Scc
 
+RUN sudo -u aur pacaur --noconfirm --noedit --needed -S \
+      python-typing \
+      python-tabulate \
+    && sudo -u aur pacaur --noconfirm -Scc
+
 # install cxflow                                          
-RUN pip install --no-cache-dir git+https://github.com/Cognexa/cxflow.git && \
-    pip install --no-cache-dir git+https://github.com/Cognexa/cxflow-scikit.git
+RUN pip install --no-cache-dir git+https://github.com/Cognexa/cxflow.git \
+    && pip install --no-cache-dir git+https://github.com/Cognexa/cxflow-scikit.git
