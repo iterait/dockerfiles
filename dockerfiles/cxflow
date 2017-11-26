@@ -11,12 +11,13 @@ RUN pacman --noconfirm --needed -S \
       python-requests \
       python-ruamel-yaml \
       python-testfixtures \
-    && pacman --noconfirm -Scc
+    && paccache -rfk0
 
 RUN sudo -u aur pacaur --noconfirm --noedit --needed -S \
       python-typing \
       python-tabulate \
-    && sudo -u aur pacaur --noconfirm -Scc
+    && rm -rf ~/.cache \
+    && paccache -rfk0
 
 # install cxflow                                          
 RUN pip install --no-cache-dir git+https://github.com/Cognexa/cxflow.git \

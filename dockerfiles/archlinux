@@ -13,7 +13,8 @@ RUN pacman --noconfirm --needed -S \
       python-numpy \
       python-pandas \
       python-scipy \
-      python-pip
+      python-pip \
+    && paccache -rfk0
 
 RUN useradd -m -s /bin/bash aur \
     && passwd -d aur \
@@ -29,7 +30,7 @@ RUN useradd -m -s /bin/bash aur \
     && sudo -u aur makepkg PKGBUILD --skippgpcheck --install --needed --noconfirm \
     && cd / \
     && rm -rf /build \
-    && pacman --noconfirm -Scc
+    && paccache -rfk0
 
 ENV EDITOR vim
 
@@ -39,4 +40,4 @@ RUN pacman --noconfirm --needed -S \
       nvidia-utils \
       cuda \
       cudnn \
-    && pacman --noconfirm -Scc
+    && paccache -rfk0
