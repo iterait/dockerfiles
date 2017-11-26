@@ -4,7 +4,7 @@ MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 RUN pacman --noconfirm --needed -S \
       python-tensorflow-opt-cuda \
       tensorboard \
-    && pacman --noconfirm -Scc
+    && paccache -rfk0
 
 # install cxflow-tensorflow
 RUN pip install --no-cache-dir git+https://github.com/Cognexa/cxflow-tensorflow.git

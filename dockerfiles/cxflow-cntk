@@ -4,7 +4,7 @@ MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 RUN pacman --noconfirm --needed -S openmpi \
     && ln -s /usr/lib/openmpi/libmpi.so  /usr/lib/openmpi/libmpi.so.12 \
     && ln -s /usr/lib/openmpi/libmpi_cxx.so  /usr/lib/openmpi/libmpi_cxx.so.1 \
-    && pacman --noconfirm -Scc
+    && paccache -rfk0
 
 ENV LD_LIBRARY_PATH /usr/lib/openmpi:$LD_LIBRARY_PATH
 
