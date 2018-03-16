@@ -1,4 +1,4 @@
-FROM pritunl/archlinux
+FROM archimg/base-devel
 MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 
 # install common packages, setup up user `aur` and install `pacaur`
