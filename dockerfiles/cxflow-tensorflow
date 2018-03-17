@@ -2,9 +2,12 @@ ARG tag="latest"
 FROM cognexa/cxflow:${tag}
 MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 
-RUN pacman --noconfirm --needed -S \
-      python-tensorflow-opt-cuda \
-      tensorboard \
+RUN if [ ${tag} = "cuda" ]; then \
+        pacman --noconfirm --needed -S python-tensorflow-opt-cuda; \
+    else \
+        pacman --noconfirm --needed -S python-tensorflow-opt; \
+    fi \
+    && pacman --noconfirm --needed -S tensorboard \
     && paccache -rfk0
 
 # install cxflow-tensorflow
