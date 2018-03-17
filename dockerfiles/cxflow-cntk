@@ -1,4 +1,5 @@
-FROM cognexa/cxflow
+ARG tag="latest"
+FROM cognexa/cxflow:${tag}
 MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 
 RUN pacman --noconfirm --needed -S openmpi \

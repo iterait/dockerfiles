@@ -10,15 +10,34 @@ However, regular docker might be used as well.
 ## DockerHub
 All built images are stored in [Cognexa DockerHub](https://hub.docker.com/r/cognexa/).
 
+| CPU-only image                             | GPU enabled image                        | Description                                                                |
+| ------------------------------------------ | ---------------------------------------- | -------------------------------------------------------------------------- |
+| `cognexa/archlinux:latest`                 | `cognexa/archlinux:cuda`                 | Base ArchLinux setup with `trizen` and other frequently required packages. |
+| `cognexa/cxflow:latest`                    | `cognexa/cxflow:cuda`                    | cxflow environment with standard plugins.                                  |
+| `cognexa/cxflow-tensorflow:latest`         | `cognexa/cxflow-tensorflow:cuda`         | TensorFlow backend for cxflow.                                             |
+| `cognexa/cxflow-cntk:latest`               | `cognexa/cxflow-cntk:cuda`               | CNTK backend for cxflow (experimental).                                    |
+| `cognexa/cxflow-tensorflow-cxtream:latest` | `cognexa/cxflow-tensorflow-cxtream:cuda` | cxflow + cxflow-tensorflow + cxtream.                                      |
+
 ## Build
-All images might be build by regular docker build process.
+All images may be built by regular docker build process.
 
 ```bash
-$ nvidia-docker build -t <image-name> -f <dockerfile> .
+$ docker build -t <image-name> -f <dockerfile> .
 ```
+
+If you require NVIDIA CUDA support, build the image with `tag=cuda` build argument.
+```bash
+$ docker build --build-arg tag=cuda -t <image-name>:cuda -f <dockerfile> .
+```
+
 ## Run
-Running the container is straightforward.
-THe following example demonstrated the employment of two GPUs and executing `bash`.
+Running the container without GPU support is straightforward.
+```bash
+$ docker run -i -t <image-name> /bin/bash
+```
+
+To run the container with GPU support, we recommend using `nvidia-docker`.
+The following example demonstrates the employment of two GPUs and executing `bash`.
 
 ```bash
 $ nvidia-docker run -i -t \
@@ -27,13 +46,5 @@ $ nvidia-docker run -i -t \
     --device /dev/nvidiactl:/dev/nvidiactl \
     --device /dev/nvidia-uvm:/dev/nvidia-uvm \
     --entrypoint /bin/bash \
-    <image-name>
+    <image-name>:cuda
 ```
-
-## Images
-The following images are provided.
-
-- Cognexa/archlinux: base ArchLinux setup with GPU support, `trizen` and other frequently required packages.
-- Cognexa/cxflow: cxflow environment with standard plugins.
-- Cognexa/cxflow-tensorflow: TensorFlow backend fro cxflow
-- Cognexa/cxflow-cntk: CNTK backend fro cxflow (experimental)

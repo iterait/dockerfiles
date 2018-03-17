@@ -1,4 +1,5 @@
-FROM cognexa/archlinux
+ARG tag="latest"
+FROM cognexa/archlinux:${tag}
 MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 
 # install additional packages
