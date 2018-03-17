@@ -4,8 +4,6 @@ MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 # install common packages
 RUN pacman --noconfirm --needed -Syu \
       git \
-      expac \
-      yajl \
       base-devel \
       opencv \
       python \
