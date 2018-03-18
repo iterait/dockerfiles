@@ -1,11 +1,9 @@
-FROM pritunl/archlinux
+FROM archimg/base-devel
 MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 
-# install common packages, setup up user `aur` and install `pacaur`
-RUN pacman --noconfirm --needed -S \
+# install common packages
+RUN pacman --noconfirm --needed -Syu \
       git \
-      expac \
-      yajl \
       base-devel \
       opencv \
       python \
@@ -16,20 +14,19 @@ RUN pacman --noconfirm --needed -S \
       python-pip \
     && paccache -rfk0
 
+# setup user `aur`
 RUN useradd -m -s /bin/bash aur \
     && passwd -d aur \
     && echo 'aur ALL=(ALL) ALL' > /etc/sudoers.d/aur \
-    && echo 'Defaults env_keep += "EDITOR"' >> /etc/sudoers.d/aur \
-    && mkdir /build \
-    && chown -R aur:aur /build \
-    && cd /build \
-    && export PATH="/usr/bin/core_perl:$PATH" \
-    && sudo -u aur curl -o PKGBUILD 'https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=cower' \
-    && sudo -u aur makepkg PKGBUILD --skippgpcheck --install --needed --noconfirm \
-    && sudo -u aur curl -o PKGBUILD 'https://aur.archlinux.org/cgit/aur.git/plain/PKGBUILD?h=pacaur' \
-    && sudo -u aur makepkg PKGBUILD --skippgpcheck --install --needed --noconfirm \
+    && echo 'Defaults env_keep += "EDITOR"' >> /etc/sudoers.d/aur
+
+# install `trizen`
+RUN git clone https://aur.archlinux.org/trizen.git \
+    && chown -R aur:aur /trizen \
+    && cd /trizen \
+    && sudo -u aur makepkg -si --needed --noconfirm \
     && cd / \
-    && rm -rf /build \
+    && rm -rf /trizen \
     && paccache -rfk0
 
 ENV EDITOR vim

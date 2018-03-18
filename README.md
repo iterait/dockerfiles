@@ -33,7 +33,7 @@ $ nvidia-docker run -i -t \
 ## Images
 The following images are provided.
 
-- Cognexa/archlinux: base ArchLinux setup with GPU support, `pacaur` and other frequently required packages.
+- Cognexa/archlinux: base ArchLinux setup with GPU support, `trizen` and other frequently required packages.
 - Cognexa/cxflow: cxflow environment with standard plugins.
 - Cognexa/cxflow-tensorflow: TensorFlow backend fro cxflow
 - Cognexa/cxflow-cntk: CNTK backend fro cxflow (experimental)
