@@ -31,10 +31,13 @@ RUN git clone https://aur.archlinux.org/trizen.git \
 
 ENV EDITOR vim
 
-# install GPU related stuff
-RUN pacman --noconfirm --needed -S \
-      nvidia \
-      nvidia-utils \
-      cuda \
-      cudnn \
-    && paccache -rfk0
+# install GPU related stuff if build argument `tag` is set to `cuda`
+ARG tag="latest"
+RUN if [ "${tag}" = "cuda" ]; then \
+        pacman --noconfirm --needed -S \
+          nvidia \
+          nvidia-utils \
+          cuda \
+          cudnn \
+        && paccache -rfk0; \
+    fi
