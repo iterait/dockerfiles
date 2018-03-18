@@ -33,18 +33,14 @@ $ docker build --build-arg tag=cuda -t <image-name>:cuda -f <dockerfile> .
 ## Run
 Running the container without GPU support is straightforward.
 ```bash
-$ docker run -i -t <image-name> /bin/bash
+$ docker run -it <image-name> /bin/bash
 ```
 
 To run the container with GPU support, we recommend using `nvidia-docker`.
 The following example demonstrates the employment of two GPUs and executing `bash`.
 
 ```bash
-$ nvidia-docker run -i -t \
-    --device /dev/nvidia0:/dev/nvidia0 \
-    --device /dev/nvidia1:/dev/nvidia1 \
-    --device /dev/nvidiactl:/dev/nvidiactl \
-    --device /dev/nvidia-uvm:/dev/nvidia-uvm \
-    --entrypoint /bin/bash \
-    <image-name>:cuda
+$ docker run --runtime=nvidia \
+    -e NVIDIA_VISIBLE_DEVICES=0,1 \
+    -it <image-name>:cuda /bin/bash
 ```
