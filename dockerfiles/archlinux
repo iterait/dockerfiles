@@ -33,7 +33,7 @@ ENV EDITOR vim
 
 # install GPU related stuff if build argument `tag` is set to `cuda`
 ARG tag="latest"
-RUN if [ ${tag} = "cuda" ]; then \
+RUN if [ "${tag}" = "cuda" ]; then \
         pacman --noconfirm --needed -S \
           nvidia \
           nvidia-utils \

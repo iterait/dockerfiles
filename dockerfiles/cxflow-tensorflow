@@ -1,8 +1,8 @@
 ARG tag="latest"
-FROM cognexa/cxflow:${tag}
+FROM cognexa/cxflow:"${tag}"
 MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 
-RUN if [ ${tag} = "cuda" ]; then \
+RUN if [ "${tag}" = "cuda" ]; then \
         pacman --noconfirm --needed -S python-tensorflow-opt-cuda; \
     else \
         pacman --noconfirm --needed -S python-tensorflow-opt; \

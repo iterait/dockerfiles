@@ -1,5 +1,5 @@
 ARG tag="latest"
-FROM cognexa/cxflow-tensorflow:${tag}
+FROM cognexa/cxflow-tensorflow:"${tag}"
 MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 
 # install extra packages
