@@ -35,9 +35,11 @@ ENV EDITOR vim
 ARG tag="latest"
 RUN if [ "${tag}" = "cuda" ]; then \
         pacman --noconfirm --needed -S \
-          nvidia \
-          nvidia-utils \
           cuda \
           cudnn \
         && paccache -rfk0; \
     fi
+
+ENV NVIDIA_VISIBLE_DEVICES all
+ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
+ENV NVIDIA_REQUIRE_CUDA "cuda>=9.1"
