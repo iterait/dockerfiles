@@ -5,6 +5,8 @@ MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 RUN pacman --noconfirm --needed -Syu \
       git \
       base-devel \
+      gtkglext \
+      hdf5 \
       opencv \
       python \
       vim \
