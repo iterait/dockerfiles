@@ -3,6 +3,7 @@ MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
 
 # install common packages
 RUN pacman --noconfirm --needed -Syu \
+      pacman-contrib \
       git \
       base-devel \
       gtkglext \
