@@ -15,7 +15,6 @@ RUN pacman --noconfirm --needed -S \
     && paccache -rfk0
 
 RUN sudo -u aur trizen --noconfirm --needed -S \
-      python-typing \
       python-tabulate \
     && paccache -rfk0 \
     && trizen -Scc --noconfirm
