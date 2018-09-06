@@ -2,21 +2,21 @@
 [![Development Status](https://img.shields.io/badge/status-CX%20Regular-brightgreen.svg?style=flat)]()
 [![Master Developer](https://img.shields.io/badge/master-Petr%20Bělohlávek-lightgrey.svg?style=flat)]()
 
-This is a repository contaning the open-source docker images provided by Cognexa Solutions s.r.o.
+This is a repository contaning the open-source docker images provided by Iterait a.s.
 
 We use nvidia-docker instead of regular docker in order to enhance GPU support.
 However, regular docker might be used as well.
 
 ## DockerHub
-All built images are stored in [Cognexa DockerHub](https://hub.docker.com/r/cognexa/).
+All built images are stored in [Iterait DockerHub](https://hub.docker.com/r/iterait/).
 
 | CPU-only image                             | GPU enabled image                        | Description                                                                |
 | ------------------------------------------ | ---------------------------------------- | -------------------------------------------------------------------------- |
-| `cognexa/archlinux:latest`                 | `cognexa/archlinux:cuda`                 | Base ArchLinux setup with `trizen` and other frequently required packages. |
-| `cognexa/cxflow:latest`                    | `cognexa/cxflow:cuda`                    | cxflow environment with standard plugins.                                  |
-| `cognexa/cxflow-tensorflow:latest`         | `cognexa/cxflow-tensorflow:cuda`         | TensorFlow backend for cxflow.                                             |
-| `cognexa/cxflow-cntk:latest`               | `cognexa/cxflow-cntk:cuda`               | CNTK backend for cxflow (experimental).                                    |
-| `cognexa/cxflow-tensorflow-cxtream:latest` | `cognexa/cxflow-tensorflow-cxtream:cuda` | cxflow + cxflow-tensorflow + cxtream.                                      |
+| `iterait/archlinux:latest`                 | `iterait/archlinux:cuda`                 | Base ArchLinux setup with `trizen` and other frequently required packages. |
+| `iterait/cxflow:latest`                    | `iterait/cxflow:cuda`                    | cxflow environment with standard plugins.                                  |
+| `iterait/cxflow-tensorflow:latest`         | `iterait/cxflow-tensorflow:cuda`         | TensorFlow backend for cxflow.                                             |
+| `iterait/cxflow-cntk:latest`               | `iterait/cxflow-cntk:cuda`               | CNTK backend for cxflow (experimental).                                    |
+| `iterait/cxflow-tensorflow-cxtream:latest` | `iterait/cxflow-tensorflow-cxtream:cuda` | cxflow + cxflow-tensorflow + cxtream.                                      |
 
 ## Build
 All images may be built by regular docker build process.

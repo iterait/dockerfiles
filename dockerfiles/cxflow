@@ -1,6 +1,6 @@
 ARG tag="latest"
-FROM cognexa/archlinux:"${tag}"
-MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
+FROM iterait/archlinux:"${tag}"
+MAINTAINER Iterait a.s. <docker@iterait.com>
 
 # install additional packages
 RUN pacman --noconfirm --needed -S \

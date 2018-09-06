@@ -1,5 +1,5 @@
 FROM archimg/base-devel
-MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
+MAINTAINER Iterait a.s. <docker@iterait.com>
 
 # install common packages
 RUN pacman --noconfirm --needed -Syu \

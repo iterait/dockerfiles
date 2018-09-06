@@ -1,6 +1,6 @@
 ARG tag="latest"
-FROM cognexa/cxflow-tensorflow:"${tag}"
-MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
+FROM iterait/cxflow-tensorflow:"${tag}"
+MAINTAINER Iterait a.s. <docker@iterait.com>
 
 # install extra packages
 RUN pacman --noconfirm --needed -S \

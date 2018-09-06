@@ -1,6 +1,6 @@
 ARG tag="latest"
-FROM cognexa/cxflow:"${tag}"
-MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
+FROM iterait/cxflow:"${tag}"
+MAINTAINER Iterait a.s. <docker@iterait.com>
 
 ARG tag
 RUN if [ "${tag}" = "cuda" ]; then \

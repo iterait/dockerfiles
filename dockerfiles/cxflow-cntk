@@ -1,6 +1,6 @@
 ARG tag="latest"
-FROM cognexa/cxflow:"${tag}"
-MAINTAINER Cognexa Solutions s.r.o. <docker@cognexa.com>
+FROM iterait/cxflow:"${tag}"
+MAINTAINER Iterait a.s. <docker@iterait.com>
 
 RUN pacman --noconfirm --needed -S openmpi \
     && ln -s /usr/lib/openmpi/libmpi.so  /usr/lib/openmpi/libmpi.so.12 \
