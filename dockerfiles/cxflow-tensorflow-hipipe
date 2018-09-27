@@ -14,9 +14,9 @@ RUN pacman --noconfirm --needed -S \
       yaml-cpp \
   && paccache -rfk0
 
-# install cxtream
-RUN git clone --recursive https://github.com/Cognexa/cxtream.git \
-  && mkdir -p cxtream/build && cd cxtream/build \
+# install hipipe
+RUN git clone --recursive https://github.com/iterait/hipipe.git \
+  && mkdir -p hipipe/build && cd hipipe/build \
   && cmake -DBUILD_TEST=OFF .. \
   && make -j4 && make install && ldconfig \
-  && cd ../../ && rm -r cxtream
+  && cd ../../ && rm -r hipipe
