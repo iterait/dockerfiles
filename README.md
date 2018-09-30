@@ -16,7 +16,7 @@ All built images are stored in [Iterait DockerHub](https://hub.docker.com/r/iter
 | `iterait/cxflow:latest`                    | `iterait/cxflow:cuda`                    | cxflow environment with standard plugins.                                  |
 | `iterait/cxflow-tensorflow:latest`         | `iterait/cxflow-tensorflow:cuda`         | TensorFlow backend for cxflow.                                             |
 | `iterait/cxflow-cntk:latest`               | `iterait/cxflow-cntk:cuda`               | CNTK backend for cxflow (experimental).                                    |
-| `iterait/cxflow-tensorflow-cxtream:latest` | `iterait/cxflow-tensorflow-cxtream:cuda` | cxflow + cxflow-tensorflow + cxtream.                                      |
+| `iterait/cxflow-tensorflow-hipipe:latest`  | `iterait/cxflow-tensorflow-hipipe:cuda`  | cxflow + cxflow-tensorflow + hipipe.                                      |
 
 ## Build
 All images may be built by regular docker build process.
