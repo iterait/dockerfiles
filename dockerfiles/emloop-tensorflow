@@ -14,4 +14,4 @@ RUN if [ "${tag}" = "cuda" ]; then \
     && paccache -rfk0
 
 # install emloop-tensorflow
-RUN pip install --no-cache-dir git+https://github.com/Cognexa/emloop-tensorflow.git
+RUN pip install --no-cache-dir git+https://github.com/iterait/emloop-tensorflow.git
