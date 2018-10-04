@@ -1,5 +1,5 @@
 ARG tag="latest"
-FROM iterait/cxflow:"${tag}"
+FROM iterait/emloop:"${tag}"
 MAINTAINER Iterait a.s. <docker@iterait.com>
 
 RUN pacman --noconfirm --needed -S openmpi \
@@ -11,5 +11,5 @@ ENV LD_LIBRARY_PATH /usr/lib/openmpi:$LD_LIBRARY_PATH
 
 RUN pip install --no-cache-dir https://cntk.ai/PythonWheel/GPU/cntk-2.0-cp36-cp36m-linux_x86_64.whl
 
-# install cxflow-cntk
-RUN pip install --no-cache-dir git+https://github.com/Cognexa/cxflow-cntk.git
+# install emloop-cntk
+RUN pip install --no-cache-dir git+https://github.com/Cognexa/emloop-cntk.git

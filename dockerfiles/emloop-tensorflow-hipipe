@@ -1,5 +1,5 @@
 ARG tag="latest"
-FROM iterait/cxflow-tensorflow:"${tag}"
+FROM iterait/emloop-tensorflow:"${tag}"
 MAINTAINER Iterait a.s. <docker@iterait.com>
 
 # install extra packages
