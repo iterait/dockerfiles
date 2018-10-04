@@ -1,5 +1,5 @@
 # dockerfiles
-[![Development Status](https://img.shields.io/badge/status-CX%20Regular-brightgreen.svg?style=flat)]()
+[![Development Status](https://img.shields.io/badge/status-Regular-brightgreen.svg?style=flat)]()
 [![Master Developer](https://img.shields.io/badge/master-Petr%20Bělohlávek-lightgrey.svg?style=flat)]()
 
 This is a repository contaning the open-source docker images provided by Iterait a.s.
@@ -13,10 +13,9 @@ All built images are stored in [Iterait DockerHub](https://hub.docker.com/r/iter
 | CPU-only image                             | GPU enabled image                        | Description                                                                |
 | ------------------------------------------ | ---------------------------------------- | -------------------------------------------------------------------------- |
 | `iterait/archlinux:latest`                 | `iterait/archlinux:cuda`                 | Base ArchLinux setup with `trizen` and other frequently required packages. |
-| `iterait/cxflow:latest`                    | `iterait/cxflow:cuda`                    | cxflow environment with standard plugins.                                  |
-| `iterait/cxflow-tensorflow:latest`         | `iterait/cxflow-tensorflow:cuda`         | TensorFlow backend for cxflow.                                             |
-| `iterait/cxflow-cntk:latest`               | `iterait/cxflow-cntk:cuda`               | CNTK backend for cxflow (experimental).                                    |
-| `iterait/cxflow-tensorflow-hipipe:latest`  | `iterait/cxflow-tensorflow-hipipe:cuda`  | cxflow + cxflow-tensorflow + hipipe.                                      |
+| `iterait/emloop:latest`                    | `iterait/emloop:cuda`                    | emloop environment with standard plugins.                                  |
+| `iterait/emloop-tensorflow:latest`         | `iterait/emloop-tensorflow:cuda`         | TensorFlow backend for emloop.                                             |
+| `iterait/emloop-tensorflow-hipipe:latest`  | `iterait/emloop-tensorflow-hipipe:cuda`  | emloop + emloop-tensorflow + hipipe.                                      |
 
 ## Build
 All images may be built by regular docker build process.

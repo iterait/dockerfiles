@@ -19,6 +19,6 @@ RUN sudo -u aur trizen --noconfirm --needed -S \
     && paccache -rfk0 \
     && trizen -Scc --noconfirm
 
-# install cxflow                                          
-RUN pip install --no-cache-dir git+https://github.com/Cognexa/cxflow.git \
-    && pip install --no-cache-dir git+https://github.com/Cognexa/cxflow-scikit.git
+# install emloop                                          
+RUN pip install --no-cache-dir git+https://github.com/Cognexa/emloop.git \
+    && pip install --no-cache-dir git+https://github.com/Cognexa/emloop-scikit.git
