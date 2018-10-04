@@ -15,7 +15,6 @@ All built images are stored in [Iterait DockerHub](https://hub.docker.com/r/iter
 | `iterait/archlinux:latest`                 | `iterait/archlinux:cuda`                 | Base ArchLinux setup with `trizen` and other frequently required packages. |
 | `iterait/emloop:latest`                    | `iterait/emloop:cuda`                    | emloop environment with standard plugins.                                  |
 | `iterait/emloop-tensorflow:latest`         | `iterait/emloop-tensorflow:cuda`         | TensorFlow backend for emloop.                                             |
-| `iterait/emloop-cntk:latest`               | `iterait/emloop-cntk:cuda`               | CNTK backend for emloop (experimental).                                    |
 | `iterait/emloop-tensorflow-hipipe:latest`  | `iterait/emloop-tensorflow-hipipe:cuda`  | emloop + emloop-tensorflow + hipipe.                                      |
 
 ## Build
