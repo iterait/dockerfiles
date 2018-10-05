@@ -11,6 +11,8 @@ RUN if [ "${tag}" = "cuda" ]; then \
         pacman --noconfirm --needed -S python-tensorflow-opt; \
     fi \
     && pacman --noconfirm --needed -S tensorboard \
+    && sudo -u aur gpg --recv-keys 8C004C2F93481F6B \
+    && sudo -u aur trizen --noconfirm --needed -S python-gast python-astor python-grpcio python-termcolor \
     && paccache -rfk0
 
 # install emloop-tensorflow
