@@ -51,3 +51,4 @@ RUN if [ "${tag}" = "cuda" ]; then \
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
 ENV NVIDIA_REQUIRE_CUDA "cuda>=9.2"
+ENV LD_LIBRARY_PATH /opt/cuda/lib64
