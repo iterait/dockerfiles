@@ -44,10 +44,11 @@ RUN if [ "${tag}" = "cuda" ]; then \
         pacman --noconfirm --needed -S \
           cuda \
           cudnn \
+          nccl \
         && paccache -rfk0; \
     fi
 
 # set NVIDIA-Docker specific variables
 ENV NVIDIA_VISIBLE_DEVICES all
 ENV NVIDIA_DRIVER_CAPABILITIES compute,utility
-ENV NVIDIA_REQUIRE_CUDA "cuda>=9.2"
+ENV NVIDIA_REQUIRE_CUDA "cuda>=10.0"
