@@ -1,0 +1,5 @@
+#!/bin/sh
+# Also push with versioned tag.
+TIMESTAMP=$(date -u +”%Y-%m-%d)
+docker tag "${IMAGE_NAME}" "${DOCKER_REPO}":"${DOCKER_TAG}"_"${TIMESTAMP}"
+docker push "${DOCKER_REPO}":"${DOCKER_TAG}"_"${TIMESTAMP}"
