@@ -50,7 +50,7 @@ RUN if [ "${tag}" = "cuda" ]; then \
         && rm -vf /usr/bin/nvidia* \
         && rm -vf /usr/lib/libnvidia* \
         && rm -vf /usr/lib/libcuda* \
-        && paccache -rfk0 \
+        && paccache -rfk0; \
     fi
 
 # set NVIDIA-Docker specific variables
