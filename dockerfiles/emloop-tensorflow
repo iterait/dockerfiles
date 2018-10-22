@@ -4,11 +4,9 @@ MAINTAINER Iterait a.s. <docker@iterait.com>
 
 ARG tag
 RUN if [ "${tag}" = "cuda" ]; then \
-        pacman --noconfirm --needed -S python-tensorflow-opt-cuda; \
-        pacman --noconfirm -Rdd nvidia-utils; \
-        pacman --noconfirm -Rns $(pacman -Qtdq); \
+        pacman --noconfirm --needed -S python-tensorflow-opt-cuda \
     else \
-        pacman --noconfirm --needed -S python-tensorflow-opt; \
+        pacman --noconfirm --needed -S python-tensorflow-opt \
     fi \
     && pacman --noconfirm --needed -S tensorboard \
     && sudo -u aur gpg --recv-keys 8C004C2F93481F6B \

@@ -39,13 +39,18 @@ RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
 ENV LANG en_US.UTF-8
 
 # install GPU related stuff if build argument `tag` is set to `cuda`
+# After the installation of cuda, we remove its libraries to avoid conflict
+# with cuda provided by nvidia-docker.
 ARG tag="latest"
 RUN if [ "${tag}" = "cuda" ]; then \
         pacman --noconfirm --needed -S \
           cuda \
           cudnn \
           nccl \
-        && paccache -rfk0; \
+        && rm -vf /usr/bin/nvidia* \
+        && rm -vf /usr/lib/libnvidia* \
+        && rm -vf /usr/lib/libcuda* \
+        && paccache -rfk0 \
     fi
 
 # set NVIDIA-Docker specific variables
