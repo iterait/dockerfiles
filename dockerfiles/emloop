@@ -12,12 +12,8 @@ RUN pacman --noconfirm --needed -S \
       python-requests \
       python-ruamel-yaml \
       python-testfixtures \
-    && paccache -rfk0
-
-RUN sudo -u aur trizen --noconfirm --needed -S \
       python-tabulate \
-    && paccache -rfk0 \
-    && trizen -Scc --noconfirm
+    && paccache -rfk0
 
 # install emloop                                          
 RUN pip install --no-cache-dir git+https://github.com/iterait/emloop.git \
