@@ -12,4 +12,4 @@ fi
 mkdir -p arch-rootfs
 tar -xzf ${IMAGE_TAR} --strip-components=1 --directory=./arch-rootfs
 
-docker build -f Dockerfile -t "iterait/archlinuxarm:$(date '+%Y-%m-%d')" .
+docker build -f Dockerfile -t "iterait/archlinuxarm:$(date '+%Y-%m-%d')" --squash .
