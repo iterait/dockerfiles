@@ -16,5 +16,4 @@ RUN pacman --noconfirm --needed -S \
     && paccache -rfk0
 
 # install emloop                                          
-RUN pip install --no-cache-dir git+https://github.com/iterait/emloop.git \
-    && pip install --no-cache-dir git+https://github.com/iterait/emloop-scikit.git
+RUN pip install --no-cache-dir git+https://github.com/iterait/emloop.git
