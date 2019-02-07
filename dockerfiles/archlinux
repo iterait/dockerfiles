@@ -3,7 +3,6 @@ MAINTAINER Iterait a.s. <docker@iterait.com>
 
 # install common packages
 RUN pacman --noconfirm --needed -Syu \
-      pacman-contrib \
       git \
       base-devel \
       gtkglext \
@@ -16,7 +15,7 @@ RUN pacman --noconfirm --needed -Syu \
       python-pandas \
       python-scipy \
       python-pip \
-    && paccache -rfk0
+      sudo
 
 # setup user `aur`
 RUN useradd -m -s /bin/bash aur \
@@ -30,8 +29,7 @@ RUN git clone https://aur.archlinux.org/trizen.git \
     && cd /trizen \
     && sudo -u aur makepkg -si --needed --noconfirm \
     && cd / \
-    && rm -rf /trizen \
-    && paccache -rfk0
+    && rm -rf /trizen
 
 ENV EDITOR vim
 
@@ -51,8 +49,7 @@ RUN if [ "${tag}" = "cuda" ]; then \
           nccl \
         && rm -vf /usr/bin/nvidia* \
         && rm -vf /usr/lib/libnvidia* \
-        && rm -vf /usr/lib/libcuda* \
-        && paccache -rfk0; \
+        && rm -vf /usr/lib/libcuda*; \
     fi
 
 # set NVIDIA-Docker specific variables

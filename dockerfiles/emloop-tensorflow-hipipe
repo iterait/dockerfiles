@@ -11,8 +11,7 @@ RUN pacman --noconfirm --needed -S \
       git \
       openmp \
       openssh \
-      yaml-cpp \
-  && paccache -rfk0
+      yaml-cpp
 
 # install hipipe
 RUN git clone --recursive https://github.com/iterait/hipipe.git \
