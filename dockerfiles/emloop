@@ -12,8 +12,7 @@ RUN pacman --noconfirm --needed -S \
       python-requests \
       python-ruamel-yaml \
       python-testfixtures \
-      python-tabulate \
-    && paccache -rfk0
+      python-tabulate
 
 # install emloop                                          
 RUN pip install --no-cache-dir git+https://github.com/iterait/emloop.git

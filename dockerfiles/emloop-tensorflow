@@ -8,8 +8,7 @@ RUN if [ "${tag}" = "cuda" ]; then \
     else \
         pacman --noconfirm --needed -S python-tensorflow-opt; \
     fi \
-    && pacman --noconfirm --needed -S tensorboard \
-    && paccache -rfk0
+    && pacman --noconfirm --needed -S tensorboard
 
 # install emloop-tensorflow
 RUN pip install --no-cache-dir git+https://github.com/iterait/emloop-tensorflow.git
