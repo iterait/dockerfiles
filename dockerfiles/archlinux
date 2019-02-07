@@ -1,4 +1,4 @@
-FROM archimg/base-devel
+FROM archlinux/base
 MAINTAINER Iterait a.s. <docker@iterait.com>
 
 # install common packages
