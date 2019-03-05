@@ -3,7 +3,7 @@ FROM iterait/archlinux:"${tag}"
 MAINTAINER Iterait a.s. <docker@iterait.com>
 
 # install additional packages
-RUN pacman --noconfirm --needed -S \
+RUN pacman --noconfirm --needed -Syu \
       python-babel \
       python-click \
       python-matplotlib \

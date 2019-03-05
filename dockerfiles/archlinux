@@ -43,7 +43,7 @@ ENV LANG en_US.UTF-8
 # with cuda provided by nvidia-docker.
 ARG tag="latest"
 RUN if [ "${tag}" = "cuda" ]; then \
-        pacman --noconfirm --needed -S \
+        pacman --noconfirm --needed -Syu \
           cuda \
           cudnn \
           nccl \
