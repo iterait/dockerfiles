@@ -3,7 +3,7 @@ FROM iterait/emloop-tensorflow:"${tag}"
 MAINTAINER Iterait a.s. <docker@iterait.com>
 
 # install extra packages
-RUN pacman --noconfirm --needed -S \
+RUN pacman --noconfirm --needed -Syu \
       base-devel \
       boost \
       cmake \
