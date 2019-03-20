@@ -8,7 +8,6 @@ RUN pacman --noconfirm --needed -Syu \
       python-click \
       python-matplotlib \
       python-numpy \
-      python-pyaml \
       python-requests \
       python-ruamel-yaml \
       python-testfixtures \
