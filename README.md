@@ -10,12 +10,10 @@ However, regular docker might be used as well.
 ## DockerHub
 All built images are stored in [Iterait DockerHub](https://hub.docker.com/r/iterait/).
 
-| CPU-only image                             | GPU enabled image                        | Description                                                                |
-| ------------------------------------------ | ---------------------------------------- | -------------------------------------------------------------------------- |
-| `iterait/archlinux:latest`                 | `iterait/archlinux:cuda`                 | Base ArchLinux setup with `trizen` and other frequently required packages. |
-| `iterait/emloop:latest`                    | `iterait/emloop:cuda`                    | emloop environment with standard plugins.                                  |
-| `iterait/emloop-tensorflow:latest`         | `iterait/emloop-tensorflow:cuda`         | TensorFlow backend for emloop.                                             |
-| `iterait/emloop-tensorflow-hipipe:latest`  | `iterait/emloop-tensorflow-hipipe:cuda`  | emloop + emloop-tensorflow + hipipe.                                      |
+| CPU-only image                  | GPU enabled image               | Description                                                                |
+| ------------------------------- | ------------------------------- | -------------------------------------------------------------------------- |
+| `iterait/archlinux:latest`      | `iterait/archlinux:cuda`        | Base ArchLinux setup with `trizen` and other frequently required packages. |
+| `iterait/tensorflow:latest`     | `iterait/tensorflow:cuda`       | Installed TensorFlow package.                                              |
 
 ## Build
 All images may be built by regular docker build process.
