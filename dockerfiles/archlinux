@@ -12,10 +12,10 @@ RUN pacman --noconfirm --needed -Syu \
       python \
       vim \
       python-numpy \
-      python-pandas \
-      python-scipy \
       python-pip \
-      sudo
+      sudo \
+      boost \
+      openssh
 
 # setup user `aur`
 RUN useradd -m -s /bin/bash aur \
