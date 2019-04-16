@@ -11,9 +11,7 @@ RUN pacman-key --init && \
 
 # install base & remove useless stuff
 RUN pacman --noconfirm -Syu --needed base && \
-    pacman --noconfirm -Rsc \
-        cryptsetup \
-        device-mapper \
+    pacman --noconfirm -Rs \
         dhcpcd \
         iproute2 \
         jfsutils \
