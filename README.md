@@ -14,6 +14,7 @@ All built images are stored in [Iterait DockerHub](https://hub.docker.com/r/iter
 | ------------------------------- | ------------------------------- | -------------------------------------------------------------------------- |
 | `iterait/archlinux:latest`      | `iterait/archlinux:cuda`        | Base ArchLinux setup with `trizen` and other frequently required packages. |
 | `iterait/tensorflow:latest`     | `iterait/tensorflow:cuda`       | Installed TensorFlow package.                                              |
+| `iterait/alpine:latest`         | ---                             | Base Alpine Linux with OpenCV and Python.                                  |
 
 ## Build
 All images may be built by regular docker build process.
