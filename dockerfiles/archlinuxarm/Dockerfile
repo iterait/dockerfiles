@@ -36,4 +36,16 @@ RUN pacman --noconfirm -Syu --needed base && \
         /README \
         /etc/pacman.d/mirrorlist.pacnew
 
+# set UTF-8 locale
+RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
+ENV LANG en_US.UTF-8
+
+# install `trizen`
+RUN git clone https://aur.archlinux.org/trizen.git \
+    && chown -R aur:aur /trizen \
+    && cd /trizen \
+    && sudo -u aur makepkg -si --needed --noconfirm \
+    && cd / \
+    && rm -rf /trizen
+
 CMD ["/bin/bash"]
