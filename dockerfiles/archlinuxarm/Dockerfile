@@ -10,7 +10,7 @@ RUN pacman-key --init && \
     pacman-key --populate archlinuxarm
 
 # install base & remove useless stuff
-RUN pacman --noconfirm -Syu --needed base && \
+RUN pacman --noconfirm -Syu --needed base sudo && \
     pacman --noconfirm -Rs \
         dhcpcd \
         iproute2 \
@@ -39,6 +39,12 @@ RUN pacman --noconfirm -Syu --needed base && \
 # set UTF-8 locale
 RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
 ENV LANG en_US.UTF-8
+
+# setup user `aur`
+RUN useradd -m -s /bin/bash aur \
+    && passwd -d aur \
+    && echo 'aur ALL=(ALL) ALL' > /etc/sudoers.d/aur \
+    && echo 'Defaults env_keep += "EDITOR"' >> /etc/sudoers.d/aur
 
 # install `trizen`
 RUN git clone https://aur.archlinux.org/trizen.git \
