@@ -43,6 +43,7 @@ ENV EDITOR vim
 
 # set UTF-8 locale
 RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
+RUN echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 ENV LANG en_US.UTF-8
 
 # setup user `aur`
