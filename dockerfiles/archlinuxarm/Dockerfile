@@ -12,6 +12,8 @@ RUN pacman-key --init && \
 # install base & remove useless stuff
 RUN pacman --noconfirm -Syu --needed \
         base \
+        base-devel \
+        git \
         sudo \
         vim \
     && pacman --noconfirm -Rs \
@@ -35,7 +37,6 @@ RUN pacman --noconfirm -Syu --needed \
     && rm -rf \
         /usr/share/man/* \
         /var/cache/pacman/pkg/* \
-        /var/lib/pacman/sync/* \
         /README \
         /etc/pacman.d/mirrorlist.pacnew
 
