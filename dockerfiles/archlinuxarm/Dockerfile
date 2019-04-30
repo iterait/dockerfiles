@@ -10,8 +10,11 @@ RUN pacman-key --init && \
     pacman-key --populate archlinuxarm
 
 # install base & remove useless stuff
-RUN pacman --noconfirm -Syu --needed base sudo && \
-    pacman --noconfirm -Rs \
+RUN pacman --noconfirm -Syu --needed \
+        base \
+        sudo \
+        vim \
+    && pacman --noconfirm -Rs \
         dhcpcd \
         iproute2 \
         jfsutils \
@@ -35,6 +38,8 @@ RUN pacman --noconfirm -Syu --needed base sudo && \
         /var/lib/pacman/sync/* \
         /README \
         /etc/pacman.d/mirrorlist.pacnew
+
+ENV EDITOR vim
 
 # set UTF-8 locale
 RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
