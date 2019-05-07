@@ -17,6 +17,13 @@ RUN pacman --noconfirm --needed -Syu \
       boost \
       openssh
 
+ENV EDITOR vim
+
+# set UTF-8 locale
+RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
+RUN echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+ENV LANG en_US.UTF-8
+
 # setup user `aur`
 RUN useradd -m -s /bin/bash aur \
     && passwd -d aur \
@@ -30,13 +37,6 @@ RUN git clone https://aur.archlinux.org/trizen.git \
     && sudo -u aur makepkg -si --needed --noconfirm \
     && cd / \
     && rm -rf /trizen
-
-ENV EDITOR vim
-
-# set UTF-8 locale
-RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
-RUN echo 'LANG=en_US.UTF-8' > /etc/locale.conf
-ENV LANG en_US.UTF-8
 
 # install GPU related stuff if build argument `tag` is set to `cuda`
 # After the installation of cuda, we remove its libraries to avoid conflict
