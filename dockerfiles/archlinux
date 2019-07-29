@@ -5,6 +5,7 @@ MAINTAINER Iterait a.s. <docker@iterait.com>
 RUN pacman --noconfirm --needed -Syu \
       git \
       base-devel \
+      cmake \
       gtkglext \
       hdf5 \
       gtk3 \
