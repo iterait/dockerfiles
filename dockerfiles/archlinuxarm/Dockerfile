@@ -18,7 +18,6 @@ RUN pacman --noconfirm -Syu --needed \
         vim \
     && pacman --noconfirm -Rs \
         dhcpcd \
-        iproute2 \
         jfsutils \
         lvm2 \
         man-db \
@@ -27,10 +26,8 @@ RUN pacman --noconfirm -Syu --needed \
         nano \
         netctl \
         openresolv \
-        pciutils \
         reiserfsprogs \
         s-nail \
-        systemd-sysvcompat \
         usbutils \
         vi \
         xfsprogs \
