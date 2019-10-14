@@ -9,6 +9,7 @@ RUN pacman --noconfirm --needed -Syu \
       hdf5 \
       gtk3 \
       opencv \
+      qt5-base \
       python \
       vim \
       python-numpy \
