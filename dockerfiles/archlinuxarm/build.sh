@@ -14,10 +14,11 @@ tar -xzf ${IMAGE_TAR} --strip-components=1 --directory=./arch-rootfs
 
 # Build the base image.
 docker build -f archlinuxarm -t "iterait/archlinuxarm:${TODAY}" -t "iterait/archlinuxarm:latest" --squash .
-docker push iterait/archlinuxarm:latest
-docker push iterait/archlinuxarm:${TODAY}
-
 # Build the -dev version without context.
 docker build - -t "iterait/archlinuxarm-dev:${TODAY}" -t "iterait/archlinuxarm-dev:latest" < archlinuxarm-dev
+
+# Push the images to the repository.
+docker push iterait/archlinuxarm:latest
+docker push iterait/archlinuxarm:${TODAY}
 docker push iterait/archlinuxarm-dev:latest
 docker push iterait/archlinuxarm-dev:${TODAY}
