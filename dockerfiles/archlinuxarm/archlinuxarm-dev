@@ -5,7 +5,6 @@ LABEL maintainer "Iterait a.s. <docker@iterait.com>"
 # install base-devel & remove useless stuff
 RUN pacman --noconfirm -Syu --needed \
         base-devel \
-        git \
         vim \
     && pacman -Rdd --noconfirm guile \
     && rm -rf \
