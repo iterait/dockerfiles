@@ -1,4 +1,4 @@
-FROM archlinuxarm
+FROM iterait/archlinuxarm
 LABEL thanksto "archimg/archlinux"
 LABEL maintainer "Iterait a.s. <docker@iterait.com>"
 
