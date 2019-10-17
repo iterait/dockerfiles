@@ -10,5 +10,10 @@ wget "${URL}/${IMAGE_TAR}"
 mkdir -p arch-rootfs
 tar -xzf ${IMAGE_TAR} --strip-components=1 --directory=./arch-rootfs
 
-docker build -f archlinuxarm -t "iterait/archlinuxarm:$(date '+%Y-%m-%d')" -t "iterait/archlinuxarm:latest" --squash .
-docker build -f archlinuxarm-dev -t "iterait/archlinuxarm-dev:$(date '+%Y-%m-%d')" -t "iterait/archlinuxarm-dev:latest" .
+today="$(date '+%Y-%m-%d')"
+docker build -f archlinuxarm -t "iterait/archlinuxarm:${today}" -t "iterait/archlinuxarm:latest" --squash .
+docker build -f archlinuxarm-dev -t "iterait/archlinuxarm-dev:${today}" -t "iterait/archlinuxarm-dev:latest" .
+docker push archlinuxiterait/archlinuxarm:latest
+docker push archlinuxiterait/archlinuxarm:${today}
+docker push archlinuxiterait/archlinuxarm-dev:latest
+docker push archlinuxiterait/archlinuxarm-dev:${today}
