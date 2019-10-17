@@ -32,35 +32,35 @@ RUN pacman --noconfirm -Syu --needed \
         usbutils \
         vi \
         xfsprogs \
-	linux-firmware \
-	linux-raspberrypi \
-	raspberrypi-firmware \
-	raspberrypi-bootloader \
-	raspberrypi-bootloader-x \
-	wpa_supplicant \
-	systemd-sysvcompat \
-	crda \
-	haveged \
-	sysfsutils \
-	wireless_tools \
-	inetutils \
-	net-tools \
-	iproute2 \
-	iputils \
-	licenses \
-	openssh \
-	texinfo \
+        linux-firmware \
+        linux-raspberrypi \
+        raspberrypi-firmware \
+        raspberrypi-bootloader \
+        raspberrypi-bootloader-x \
+        wpa_supplicant \
+        systemd-sysvcompat \
+        crda \
+        haveged \
+        sysfsutils \
+        wireless_tools \
+        inetutils \
+        net-tools \
+        iproute2 \
+        iputils \
+        licenses \
+        openssh \
+        texinfo \
     && rm -rf \
         /usr/share/man/* \
-	/usr/share/doc \
-	/usr/share/info \
+        /usr/share/doc \
+        /usr/share/info \
         /var/cache/pacman/pkg/* \
         /README \
         /etc/pacman.d/mirrorlist.pacnew \
-	/usr/lib/udev/hwdb.bin \
-	/usr/lib/udev/hwdb.d \
-	/usr/lib/systemd \
-	/boot \
+        /usr/lib/udev/hwdb.bin \
+        /usr/lib/udev/hwdb.d \
+        /usr/lib/systemd \
+        /boot \
     && find /usr/share/locale -name "*.mo" | xargs rm
 
 ENV EDITOR vim
