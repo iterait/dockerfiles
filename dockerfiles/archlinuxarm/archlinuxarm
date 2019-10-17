@@ -12,6 +12,8 @@ RUN pacman-key --init && \
 # install base & remove useless stuff
 RUN pacman --noconfirm -Syu --needed \
         base \
+        binutils \
+        fakeroot \
         git \
         sudo \
     && pacman --noconfirm -Rs \
@@ -78,6 +80,10 @@ RUN git clone https://aur.archlinux.org/trizen.git \
     && cd /trizen \
     && sudo -u aur makepkg -si --needed --noconfirm \
     && cd / \
-    && rm -rf /trizen
+    && rm -rf /trizen \
+         /usr/share/man/* \
+         /usr/share/doc \
+         /usr/share/info \
+         /var/cache/pacman/pkg/*
 
 CMD ["/bin/bash"]
