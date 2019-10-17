@@ -5,11 +5,10 @@
 URL="http://os.archlinuxarm.org/os"
 IMAGE_TAR="ArchLinuxARM-rpi-2-latest.tar.gz"
 
-if [ ! -f ${IMAGE_TAR} ]; then
-    wget "${URL}/${IMAGE_TAR}"
-fi
-
+rm -rf "${IMAGE_TAR}" arch-rootfs
+wget "${URL}/${IMAGE_TAR}"
 mkdir -p arch-rootfs
 tar -xzf ${IMAGE_TAR} --strip-components=1 --directory=./arch-rootfs
 
-docker build -f Dockerfile -t "iterait/archlinuxarm-dev:$(date '+%Y-%m-%d')" -t "iterait/archlinuxarm-dev:latest" --squash .
+docker build -f archlinuxarm -t "iterait/archlinuxarm:$(date '+%Y-%m-%d')" -t "iterait/archlinuxarm:latest" --squash .
+docker build -f archlinuxarm-dev -t "iterait/archlinuxarm-dev:$(date '+%Y-%m-%d')" -t "iterait/archlinuxarm-dev:latest" .

@@ -1,0 +1,19 @@
+FROM archlinuxarm
+LABEL thanksto "archimg/archlinux"
+LABEL maintainer "Iterait a.s. <docker@iterait.com>"
+
+# install base-devel & remove useless stuff
+RUN pacman --noconfirm -Syu --needed \
+        base-devel \
+        git \
+        vim \
+    && pacman -Rdd --noconfirm guile \
+    && rm -rf \
+        /usr/share/man/* \
+        /usr/share/doc \
+        /usr/share/info \
+        /var/cache/pacman/pkg/*
+
+ENV EDITOR vim
+
+CMD ["/bin/bash"]

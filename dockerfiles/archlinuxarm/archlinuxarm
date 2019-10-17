@@ -12,10 +12,7 @@ RUN pacman-key --init && \
 # install base & remove useless stuff
 RUN pacman --noconfirm -Syu --needed \
         base \
-        base-devel \
-        git \
         sudo \
-    && pacman -Rdd --noconfirm guile \
     && pacman --noconfirm -Rs \
         base \
         dhcpcd \
@@ -62,8 +59,6 @@ RUN pacman --noconfirm -Syu --needed \
         /usr/lib/systemd \
         /boot \
     && find /usr/share/locale -name "*.mo" | xargs rm
-
-ENV EDITOR vim
 
 # set UTF-8 locale
 RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
