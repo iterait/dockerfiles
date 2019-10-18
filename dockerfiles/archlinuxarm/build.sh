@@ -12,6 +12,9 @@ wget "${URL}/${IMAGE_TAR}"
 mkdir -p arch-rootfs
 tar -xzf ${IMAGE_TAR} --strip-components=1 --directory=./arch-rootfs
 
+# Copy libalpm hooks to our future build context 
+cp ../*.hook ./
+
 # Build the base image.
 docker build -f Dockerfile.archlinuxarm -t "iterait/archlinuxarm:${TODAY}" -t "iterait/archlinuxarm:latest" --squash .
 # Build the -dev version without context.
