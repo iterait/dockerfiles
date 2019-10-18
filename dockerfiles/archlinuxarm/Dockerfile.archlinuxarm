@@ -4,6 +4,7 @@ LABEL maintainer "Iterait a.s. <docker@iterait.com>"
 
 # add image content
 ADD arch-rootfs/ /
+ADD 99-cleanup.hook /usr/share/libalpm/hooks/
 
 # add keyring 
 RUN pacman-key --init && \
@@ -51,17 +52,8 @@ RUN pacman --noconfirm -Syu --needed \
         openssh \
         texinfo \
     && rm -rf \
-        /usr/share/man/* \
-        /usr/share/doc \
-        /usr/share/info \
-        /var/cache/pacman/pkg/* \
         /README \
-        /etc/pacman.d/mirrorlist.pacnew \
-        /usr/lib/udev/hwdb.bin \
-        /usr/lib/udev/hwdb.d \
-        /usr/lib/systemd \
-        /boot \
-    && find /usr/share/locale -name "*.mo" | xargs rm
+        /etc/pacman.d/mirrorlist.pacnew
 
 # set UTF-8 locale
 RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
@@ -80,10 +72,6 @@ RUN git clone https://aur.archlinux.org/trizen.git \
     && cd /trizen \
     && sudo -u aur makepkg -si --needed --noconfirm \
     && cd / \
-    && rm -rf /trizen \
-         /usr/share/man/* \
-         /usr/share/doc \
-         /usr/share/info \
-         /var/cache/pacman/pkg/*
+    && rm -rf /trizen 
 
 CMD ["/bin/bash"]
