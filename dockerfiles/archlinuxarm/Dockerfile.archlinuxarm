@@ -4,6 +4,7 @@ LABEL maintainer "Iterait a.s. <docker@iterait.com>"
 
 # add image content
 ADD arch-rootfs/ /
+ADD 99-cleanup.hook /usr/share/libalpm/hooks/
 
 # add keyring 
 RUN pacman-key --init && \
@@ -12,11 +13,12 @@ RUN pacman-key --init && \
 # install base & remove useless stuff
 RUN pacman --noconfirm -Syu --needed \
         base \
-        base-devel \
+        binutils \
+        fakeroot \
         git \
         sudo \
-        vim \
     && pacman --noconfirm -Rs \
+        base \
         dhcpcd \
         jfsutils \
         lvm2 \
@@ -31,13 +33,27 @@ RUN pacman --noconfirm -Syu --needed \
         usbutils \
         vi \
         xfsprogs \
+        linux-firmware \
+        linux-raspberrypi \
+        raspberrypi-firmware \
+        raspberrypi-bootloader \
+        raspberrypi-bootloader-x \
+        wpa_supplicant \
+        systemd-sysvcompat \
+        crda \
+        haveged \
+        sysfsutils \
+        wireless_tools \
+        inetutils \
+        net-tools \
+        iproute2 \
+        iputils \
+        licenses \
+        openssh \
+        texinfo \
     && rm -rf \
-        /usr/share/man/* \
-        /var/cache/pacman/pkg/* \
         /README \
         /etc/pacman.d/mirrorlist.pacnew
-
-ENV EDITOR vim
 
 # set UTF-8 locale
 RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
@@ -56,6 +72,6 @@ RUN git clone https://aur.archlinux.org/trizen.git \
     && cd /trizen \
     && sudo -u aur makepkg -si --needed --noconfirm \
     && cd / \
-    && rm -rf /trizen
+    && rm -rf /trizen 
 
 CMD ["/bin/bash"]
