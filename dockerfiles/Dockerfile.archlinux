@@ -10,10 +10,7 @@ RUN pacman --noconfirm --needed -Syu \
         binutils \
         fakeroot \
         git \
-        sudo \
-    && rm -rf \
-        /README \
-        /etc/pacman.d/mirrorlist.pacnew
+        sudo
 
 ENV EDITOR vim
 

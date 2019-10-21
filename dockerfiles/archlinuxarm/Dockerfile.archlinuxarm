@@ -51,9 +51,7 @@ RUN pacman --noconfirm -Syu --needed \
         licenses \
         openssh \
         texinfo \
-    && rm -rf \
-        /README \
-        /etc/pacman.d/mirrorlist.pacnew
+    && rm -rf /README 
 
 # set UTF-8 locale
 RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
