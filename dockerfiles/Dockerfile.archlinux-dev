@@ -1,10 +1,11 @@
-FROM archlinux/base
+FROM iterait/archlinux
 MAINTAINER Iterait a.s. <docker@iterait.com>
 
 # install common packages
 RUN pacman --noconfirm --needed -Syu \
       base-devel \
-      vim
+      vim \
+    && find /usr/lib/guile -name "*.go" | xargs rm
 
 ENV EDITOR vim
 
