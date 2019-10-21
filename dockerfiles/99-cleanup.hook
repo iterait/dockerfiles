@@ -7,4 +7,4 @@ Target = *
 [Action]
 Description = Cleaning up files not needed in a container...
 When = PostTransaction
-Exec = /bin/sh -c "/usr/bin/rm -rf /boot /usr/share/man /usr/share/doc /usr/share/gtk-doc /usr/share/info /var/cache/pacman/pkg /usr/lib/udev/hwdb.d /usr/lib/udev/hwdb.bin /usr/lib/libgo.so* /usr/lib/systemd /usr/lib/python*/test /tmp/trizen-aur; find /usr/share/locale -name '*.mo' -type f -exec rm {} \;"
+Exec = /bin/sh -c "/usr/bin/rm -rf /boot /usr/share/man /usr/share/doc /usr/share/gtk-doc /usr/share/info /var/cache/pacman/pkg /usr/lib/udev/hwdb.d /usr/lib/udev/hwdb.bin /usr/lib/libgo.so* /usr/lib/systemd /usr/lib/python*/test; find /usr/share/locale -name '*.mo' -type f -exec rm {} \;"
