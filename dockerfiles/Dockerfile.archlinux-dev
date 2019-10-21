@@ -5,6 +5,7 @@ MAINTAINER Iterait a.s. <docker@iterait.com>
 RUN pacman --noconfirm --needed -Syu \
       base-devel \
       vim \
+      cmake \
     && find /usr/lib/guile -name "*.go" | xargs rm
 
 ENV EDITOR vim
