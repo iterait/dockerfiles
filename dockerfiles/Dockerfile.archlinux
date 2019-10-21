@@ -1,23 +1,16 @@
-FROM archlinux/base
+FROM scratch
 MAINTAINER Iterait a.s. <docker@iterait.com>
+
+COPY --from=archlinux/base / /
+# add cleanup hook
+ADD 99-cleanup.hook /usr/share/libalpm/hooks/
 
 # install common packages
 RUN pacman --noconfirm --needed -Syu \
-      git \
-      base-devel \
-      cmake \
-      gtkglext \
-      hdf5 \
-      gtk3 \
-      opencv \
-      qt5-base \
-      python \
-      vim \
-      python-numpy \
-      python-pip \
-      sudo \
-      boost \
-      openssh
+        binutils \
+        fakeroot \
+        git \
+        sudo
 
 ENV EDITOR vim
 
@@ -32,13 +25,16 @@ RUN useradd -m -s /bin/bash aur \
     && echo 'aur ALL=(ALL) ALL' > /etc/sudoers.d/aur \
     && echo 'Defaults env_keep += "EDITOR"' >> /etc/sudoers.d/aur
 
-# install `trizen`
-RUN git clone https://aur.archlinux.org/trizen.git \
-    && chown -R aur:aur /trizen \
-    && cd /trizen \
+# install `yay`
+RUN git clone https://aur.archlinux.org/yay-bin.git \
+    && chown -R aur:aur /yay-bin \
+    && cd /yay-bin \
     && sudo -u aur makepkg -si --needed --noconfirm \
     && cd / \
-    && rm -rf /trizen
+    && rm -rf /yay-bin
+
+# configure `yay` to remove build cache and make dependencies
+RUN sudo -u aur yay --cleanafter --removemake --save
 
 # install GPU related stuff if build argument `tag` is set to `cuda`
 # After the installation of cuda, we remove its libraries to avoid conflict

@@ -6,7 +6,7 @@ LABEL maintainer "Iterait a.s. <docker@iterait.com>"
 RUN pacman --noconfirm -Syu --needed \
         base-devel \
         vim \
-    && pacman -Rdd --noconfirm guile
+    && find /usr/lib/guile -name "*.go" | xargs rm
 
 ENV EDITOR vim
 
