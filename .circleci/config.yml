@@ -33,6 +33,10 @@ jobs:
 workflows:
   version: 2
 
+  test_matrix: &test_matrix
+    jobs:
+      - build
+
   nightly:
     triggers:
       - schedule:
@@ -41,6 +45,5 @@ workflows:
             branches:
               only:
                 - master
-    jobs:
-      - build
+    <<: *test_matrix
 
