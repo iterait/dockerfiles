@@ -10,16 +10,17 @@ However, regular docker might be used as well.
 ## DockerHub
 All built images are stored in [Iterait DockerHub](https://hub.docker.com/r/iterait/).
 
-| CPU-only image                  | GPU enabled image               | Description                                                                |
-| ------------------------------- | ------------------------------- | -------------------------------------------------------------------------- |
-| `iterait/archlinux:latest`      | `iterait/archlinux:cuda`        | Base ArchLinux setup with `trizen` and other frequently required packages. |
-| `iterait/tensorflow:latest`     | `iterait/tensorflow:cuda`       | Installed TensorFlow package.                                              |
+| CPU-only image                  | GPU enabled image               | Description                         |
+| ------------------------------- | ------------------------------- | ----------------------------------- |
+| `iterait/archlinux:latest`      | `iterait/archlinux:cuda`        | Base ArchLinux setup with `yay`.    |
+| `iterait/archlinux-dev:latest`  | `iterait/archlinux-dev:cuda`    | `iterait/archlinux` + `base-devel`. |
+| `iterait/tensorflow:latest`     | `iterait/tensorflow:cuda`       | `iterait/archlinux` + `tensorflow`. |
 
 ## Build
 All images may be built by regular docker build process.
 
 ```bash
-$ docker build -t <image-name> -f <dockerfile> .
+$ docker build -t <image-name> -f <dockerfile> --squash .
 ```
 
 If you require NVIDIA CUDA support, build the image with `tag=cuda` build argument.
