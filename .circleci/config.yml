@@ -1,0 +1,46 @@
+version: 2
+
+references:
+
+  docker_login: &docker_login
+    run:
+      name: Login to Docker.
+      command: |
+        sudo docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}
+
+  build_x86_images: &build_x86_images
+    run:
+      name: Build all our x86 images.
+      command: |
+        # Enable Docker experimental features.
+        sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+        sudo service docker restart
+        # Build images.
+        cd ./dockerfiles
+        ./build.sh
+
+jobs:
+
+  build:
+    machine:
+      docker_layer_caching: true
+    working_directory: ~/dockerfiles
+    steps:
+      - checkout
+      - *docker_login
+      - *build_x86_images
+
+workflows:
+  version: 2
+
+  nightly:
+    triggers:
+      - schedule:
+          cron: "48 1 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - build
+
