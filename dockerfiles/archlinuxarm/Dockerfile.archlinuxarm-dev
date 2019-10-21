@@ -5,6 +5,7 @@ LABEL maintainer "Iterait a.s. <docker@iterait.com>"
 # install base-devel & remove useless stuff
 RUN pacman --noconfirm -Syu --needed \
         base-devel \
+        cmake \
         vim \
     && find /usr/lib/guile -name "*.go" | xargs rm
 
