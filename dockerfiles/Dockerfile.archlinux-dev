@@ -6,6 +6,8 @@ RUN pacman --noconfirm --needed -Syu \
       base-devel \
       cmake \
       vim \
+      python \
+      python-pip \
     && find /usr/lib/guile -name "*.go" | xargs rm
 
 ENV EDITOR vim
