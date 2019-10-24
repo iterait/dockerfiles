@@ -22,8 +22,7 @@ references:
 jobs:
 
   build:
-    machine:
-      docker_layer_caching: true
+    machine: true
     working_directory: ~/dockerfiles
     steps:
       - checkout

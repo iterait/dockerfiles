@@ -2,8 +2,8 @@
 
 TODAY="$(date '+%Y-%m-%d')"
 for imgname in archlinux archlinux-dev tensorflow; do
-    sudo docker build -f Dockerfile.${imgname} -t "iterait/${imgname}:${TODAY}" -t "iterait/${imgname}:latest" --squash .
-    sudo docker build -f Dockerfile.${imgname} --build-arg tag="cuda" -t "iterait/${imgname}:cuda_${TODAY}" -t "iterait/${imgname}:cuda" --squash .
+    sudo docker build -f Dockerfile.${imgname} --rm -t "iterait/${imgname}:${TODAY}" -t "iterait/${imgname}:latest" --squash .
+    sudo docker build -f Dockerfile.${imgname} --rm --build-arg tag="cuda" -t "iterait/${imgname}:cuda_${TODAY}" -t "iterait/${imgname}:cuda" --squash .
     if [ "${CIRCLE_BRANCH}" == "master" ]; then
         sudo docker push iterait/${imgname}:latest
         sudo docker push iterait/${imgname}:"${TODAY}"
