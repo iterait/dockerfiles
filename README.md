@@ -17,15 +17,9 @@ All built images are stored in [Iterait DockerHub](https://hub.docker.com/r/iter
 | `iterait/tensorflow:latest`     | `iterait/tensorflow:cuda`       | `iterait/archlinux` + `tensorflow`. |
 
 ## Build
-All images may be built by regular docker build process.
-
-```bash
-$ docker build -t <image-name> -f <dockerfile> --squash .
+Build all the images by running:
 ```
-
-If you require NVIDIA CUDA support, build the image with `tag=cuda` build argument.
-```bash
-$ docker build --build-arg tag=cuda -t <image-name>:cuda -f <dockerfile> .
+./build.sh
 ```
 
 ## Run
