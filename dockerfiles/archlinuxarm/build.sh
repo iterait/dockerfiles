@@ -16,9 +16,9 @@ tar -xzf ${IMAGE_TAR} --strip-components=1 --directory=./arch-rootfs
 cp ../*.hook ./
 
 # Build the base image.
-docker build -f Dockerfile.archlinuxarm --rm -t "iterait/archlinuxarm:${TODAY}" -t "iterait/archlinuxarm:latest" --squash .
+docker build -f Dockerfile.archlinuxarm --rm --no-cache -t "iterait/archlinuxarm:${TODAY}" -t "iterait/archlinuxarm:latest" --squash .
 # Build the -dev version without context.
-docker build - --rm -t "iterait/archlinuxarm-dev:${TODAY}" -t "iterait/archlinuxarm-dev:latest" < Dockerfile.archlinuxarm-dev
+docker build - --rm --no-cache -t "iterait/archlinuxarm-dev:${TODAY}" -t "iterait/archlinuxarm-dev:latest" < Dockerfile.archlinuxarm-dev
 
 # Push the images to the repository.
 docker push iterait/archlinuxarm:latest
