@@ -1,7 +1,7 @@
 FROM scratch
 MAINTAINER Iterait a.s. <docker@iterait.com>
 
-COPY --from=archlinux/base / /
+COPY --from=archlinux:latest / /
 # add cleanup hook
 ADD 99-cleanup.hook /usr/share/libalpm/hooks/
 
