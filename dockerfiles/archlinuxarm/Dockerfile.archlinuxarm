@@ -18,7 +18,6 @@ RUN pacman --noconfirm -Syu --needed \
         git \
         sudo \
     && pacman --noconfirm -Rs \
-        base \
         dhcpcd \
         nano \
         netctl \
@@ -30,14 +29,10 @@ RUN pacman --noconfirm -Syu --needed \
         raspberrypi-bootloader \
         raspberrypi-bootloader-x \
         wpa_supplicant \
-        systemd-sysvcompat \
         crda \
         haveged \
         wireless_tools \
         net-tools \
-        iproute2 \
-        iputils \
-        licenses \
         openssh \
     && rm -rf /README 
 
