@@ -18,39 +18,22 @@ RUN pacman --noconfirm -Syu --needed \
         git \
         sudo \
     && pacman --noconfirm -Rs \
-        base \
         dhcpcd \
-        jfsutils \
-        lvm2 \
-        man-db \
-        man-pages \
-        mdadm \
         nano \
         netctl \
         openresolv \
-        reiserfsprogs \
-        s-nail \
-        usbutils \
         vi \
-        xfsprogs \
         linux-firmware \
         linux-raspberrypi \
         raspberrypi-firmware \
         raspberrypi-bootloader \
         raspberrypi-bootloader-x \
         wpa_supplicant \
-        systemd-sysvcompat \
         crda \
         haveged \
-        sysfsutils \
         wireless_tools \
-        inetutils \
         net-tools \
-        iproute2 \
-        iputils \
-        licenses \
         openssh \
-        texinfo \
     && rm -rf /README 
 
 # set UTF-8 locale
