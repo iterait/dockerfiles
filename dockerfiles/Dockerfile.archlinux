@@ -47,10 +47,10 @@ RUN if [ "${tag}" = "cuda" ]; then \
           nccl \
         && rm -vf /usr/bin/nvidia* \
         && rm -vf /usr/lib/libnvidia* \
-        && rm -vf /usr/lib/libcuda*; \
-        && rm -rvf /opt/cuda/doc/; \
-        && rm -rvf /opt/cuda/*nsight*; \
-        && rm -rvf /opt/cuda/*nvvp*; \
+        && rm -vf /usr/lib/libcuda* \
+        && rm -rvf /opt/cuda/doc/ \
+        && rm -rvf /opt/cuda/*nsight* \
+        && rm -rvf /opt/cuda/*nvvp* \
         && rm -rvf /opt/cuda/samples/; \
     fi
 
