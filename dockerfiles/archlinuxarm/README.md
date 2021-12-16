@@ -3,6 +3,12 @@ ArchLinux ARM Docker Image
 
 Based on [archimg/archlinux](https://github.com/archimg/archlinux).
 
+Prerequisites (Arch Linux)
+===
+```
+sudo pacman -S qemu-headless qemu-headless-arch-extra docker
+```
+
 Build
 =====
 

@@ -1,4 +1,5 @@
-FROM iterait/archlinuxarm
+ARG BASE_IMAGE
+FROM iterait/${BASE_IMAGE}
 LABEL thanksto "archimg/archlinux"
 LABEL maintainer "Iterait a.s. <docker@iterait.com>"
 

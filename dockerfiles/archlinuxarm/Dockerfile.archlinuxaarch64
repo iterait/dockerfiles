@@ -1,0 +1,55 @@
+FROM scratch
+LABEL thanksto "archimg/archlinux"
+LABEL maintainer "Iterait a.s. <docker@iterait.com>"
+
+# add image content
+ADD arch-rootfs/ /
+ADD 99-cleanup.hook /usr/share/libalpm/hooks/
+
+# add keyring 
+RUN pacman-key --init && \
+    pacman-key --populate archlinuxarm
+
+# install base & remove useless stuff
+RUN pacman --noconfirm -Syu --needed \
+        base \
+        binutils \
+        fakeroot \
+        git \
+        sudo \
+    && pacman --noconfirm -Rs \
+        dhcpcd \
+        netctl \
+        openresolv \
+        vi \
+        haveged \
+        net-tools \
+        openssh \
+    && rm -rf /README 
+
+# set UTF-8 locale
+RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
+RUN echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+ENV LANG en_US.UTF-8
+
+# setup user `aur`
+RUN useradd -m -s /bin/bash aur \
+    && passwd -d aur \
+    && echo 'aur ALL=(ALL) ALL' > /etc/sudoers.d/aur \
+    && echo 'Defaults env_keep += "EDITOR"' >> /etc/sudoers.d/aur
+
+# install `yay`
+RUN git clone https://aur.archlinux.org/yay-bin.git \
+    && chown -R aur:aur /yay-bin \
+    && cd /yay-bin \
+    && sudo -u aur makepkg -si --needed --noconfirm \
+    && cd / \
+    && rm -rf /yay-bin
+
+# configure `yay` to remove build cache and make dependencies
+RUN sudo -u aur yay --cleanafter --removemake --save
+
+COPY ./qemu-arm-static /usr/bin/qemu-arm-static
+RUN pacman -Syu --needed --noconfirm vim
+
+CMD ["/bin/bash"]
