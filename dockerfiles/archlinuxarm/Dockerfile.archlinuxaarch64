@@ -19,6 +19,7 @@ RUN pacman --noconfirm -Syu --needed \
         sudo \
     && pacman --noconfirm -Rs \
         dhcpcd \
+        nano \
         netctl \
         openresolv \
         vi \
@@ -49,7 +50,63 @@ RUN git clone https://aur.archlinux.org/yay-bin.git \
 # configure `yay` to remove build cache and make dependencies
 RUN sudo -u aur yay --cleanafter --removemake --save
 
-COPY ./qemu-arm-static /usr/bin/qemu-arm-static
-RUN pacman -Syu --needed --noconfirm vim
+# remove all unnecessary packages
+RUN pacman --noconfirm -R \
+        yay-bin \
+        git \
+        argon2 \
+        base \
+        binutils \
+        cryptsetup \
+        db \
+        dbus \
+        device-mapper \
+        diffutils \
+        elfutils \
+        fakeroot \
+        file \
+        gawk \
+        gdbm \
+        gettext \
+        grep \
+        hwids \
+        icu \
+        iproute2 \
+        iptables \
+        iputils \
+        json-c \
+        kbd \
+        kmod \
+        libcroco \
+        libelf \
+        libmnl \
+        libnetfilter_conntrack \
+        libnfnetlink \
+        libnftnl \
+        libnl \
+        libpcap \
+        libseccomp \
+        libxml2 \
+        licenses \
+        linux-aarch64 \
+        linux-firmware \
+        mkinitcpio \
+        mkinitcpio-busybox \
+        mpfr \
+        pciutils \
+        perl \
+        perl-error \
+        perl-mailtools \
+        perl-timedate \
+        popt \
+        procps-ng \
+        psmisc \
+        shadow \
+        sudo \
+        systemd \
+        systemd-sysvcompat \
+        tar \
+        util-linux \
+        which
 
 CMD ["/bin/bash"]
