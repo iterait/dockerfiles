@@ -39,20 +39,9 @@ RUN useradd -m -s /bin/bash aur \
     && echo 'aur ALL=(ALL) ALL' > /etc/sudoers.d/aur \
     && echo 'Defaults env_keep += "EDITOR"' >> /etc/sudoers.d/aur
 
-# install `yay`
-RUN git clone https://aur.archlinux.org/yay-bin.git \
-    && chown -R aur:aur /yay-bin \
-    && cd /yay-bin \
-    && sudo -u aur makepkg -si --needed --noconfirm \
-    && cd / \
-    && rm -rf /yay-bin
-
-# configure `yay` to remove build cache and make dependencies
-RUN sudo -u aur yay --cleanafter --removemake --save
 
 # remove all unnecessary packages
 RUN pacman --noconfirm -R \
-        yay-bin \
         git \
         argon2 \
         base \

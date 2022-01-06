@@ -8,10 +8,8 @@ for imagename in archlinuxaarch64 archlinuxarm; do
     
     if [ "${imagename}" = "archlinuxarm" ]; then
         IMAGE_TAR="ArchLinuxARM-rpi-2-latest.tar.gz"
-        cp /usr/bin/qemu-arm-static qemu-arm-static
     elif [ "${imagename}" = "archlinuxaarch64" ]; then
         IMAGE_TAR="ArchLinuxARM-aarch64-latest.tar.gz"
-        cp /usr/bin/qemu-aarch64-static qemu-arm-static
     else
         echo "Not suppoorted arm image type."
         exit 1
