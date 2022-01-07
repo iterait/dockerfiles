@@ -1,27 +1,37 @@
 #!/bin/bash -ex
 
 [ $UID -ne 0 ] && echo "This script should get executed as root. Otherwise file special permissions are not set correctly." >&2
-
-URL="http://os.archlinuxarm.org/os"
-IMAGE_TAR="ArchLinuxARM-rpi-2-latest.tar.gz"
 TODAY="$(date '+%Y-%m-%d')"
+URL="http://os.archlinuxarm.org/os"
 
-# Download and unpack the base system tarball from archlinuxarm.org.
-rm -rf "${IMAGE_TAR}" arch-rootfs
-wget "${URL}/${IMAGE_TAR}"
-mkdir -p arch-rootfs
-tar -xzf ${IMAGE_TAR} --strip-components=1 --directory=./arch-rootfs
+for imagename in archlinuxaarch64 archlinuxarm; do
+    
+    if [ "${imagename}" = "archlinuxarm" ]; then
+        IMAGE_TAR="ArchLinuxARM-rpi-2-latest.tar.gz"
+    elif [ "${imagename}" = "archlinuxaarch64" ]; then
+        IMAGE_TAR="ArchLinuxARM-aarch64-latest.tar.gz"
+    else
+        echo "Not suppoorted arm image type."
+        exit 1
+    fi
 
-# Copy libalpm hooks to our future build context 
-cp ../*.hook ./
+    # Download and unpack the base system tarball from archlinuxarm.org.
+    rm -rf "${IMAGE_TAR}" arch-rootfs
+    wget "${URL}/${IMAGE_TAR}"
+    mkdir -p arch-rootfs
+    tar -xzf ${IMAGE_TAR} --strip-components=1 --directory=./arch-rootfs
 
-# Build the base image.
-docker build -f Dockerfile.archlinuxarm --rm --no-cache -t "iterait/archlinuxarm:${TODAY}" -t "iterait/archlinuxarm:latest" --squash .
-# Build the -dev version without context.
-docker build - --rm --no-cache -t "iterait/archlinuxarm-dev:${TODAY}" -t "iterait/archlinuxarm-dev:latest" < Dockerfile.archlinuxarm-dev
+    # Copy libalpm hooks to our future build context 
+    cp ../*.hook ./
 
-# Push the images to the repository.
-docker push iterait/archlinuxarm:latest
-docker push iterait/archlinuxarm:${TODAY}
-docker push iterait/archlinuxarm-dev:latest
-docker push iterait/archlinuxarm-dev:${TODAY}
+    # Build the base image.
+    docker build -f Dockerfile.${imagename} --rm --no-cache -t "iterait/${imagename}:${TODAY}" -t "iterait/${imagename}:latest" --squash .
+    # Build the -dev version without context.
+    docker build - --build-arg BASE_IMAGE=${imagename} --rm --no-cache -t "iterait/${imagename}-dev:${TODAY}" -t "iterait/${imagename}-dev:latest" < Dockerfile.dev
+
+    # Push the images to the repository.
+    docker push iterait/${imagename}:latest
+    docker push iterait/${imagename}:${TODAY}
+    docker push iterait/${imagename}-dev:latest
+    docker push iterait/${imagename}-dev:${TODAY}
+done

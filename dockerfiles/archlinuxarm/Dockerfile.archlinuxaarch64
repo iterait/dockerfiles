@@ -1,0 +1,101 @@
+FROM scratch
+LABEL thanksto "archimg/archlinux"
+LABEL maintainer "Iterait a.s. <docker@iterait.com>"
+
+# add image content
+ADD arch-rootfs/ /
+ADD 99-cleanup.hook /usr/share/libalpm/hooks/
+
+# add keyring 
+RUN pacman-key --init && \
+    pacman-key --populate archlinuxarm
+
+# install base & remove useless stuff
+RUN pacman --noconfirm -Syu --needed \
+        base \
+        binutils \
+        fakeroot \
+        git \
+        sudo \
+    && pacman --noconfirm -Rs \
+        dhcpcd \
+        nano \
+        netctl \
+        openresolv \
+        vi \
+        haveged \
+        net-tools \
+        openssh \
+    && rm -rf /README 
+
+# set UTF-8 locale
+RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
+RUN echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+ENV LANG en_US.UTF-8
+
+# setup user `aur`
+RUN useradd -m -s /bin/bash aur \
+    && passwd -d aur \
+    && echo 'aur ALL=(ALL) ALL' > /etc/sudoers.d/aur \
+    && echo 'Defaults env_keep += "EDITOR"' >> /etc/sudoers.d/aur
+
+
+# remove all unnecessary packages
+RUN pacman --noconfirm -R \
+        git \
+        argon2 \
+        base \
+        binutils \
+        cryptsetup \
+        db \
+        dbus \
+        device-mapper \
+        diffutils \
+        elfutils \
+        fakeroot \
+        file \
+        gawk \
+        gdbm \
+        gettext \
+        grep \
+        hwids \
+        icu \
+        iproute2 \
+        iptables \
+        iputils \
+        json-c \
+        kbd \
+        kmod \
+        libcroco \
+        libelf \
+        libmnl \
+        libnetfilter_conntrack \
+        libnfnetlink \
+        libnftnl \
+        libnl \
+        libpcap \
+        libseccomp \
+        libxml2 \
+        licenses \
+        linux-aarch64 \
+        linux-firmware \
+        mkinitcpio \
+        mkinitcpio-busybox \
+        mpfr \
+        pciutils \
+        perl \
+        perl-error \
+        perl-mailtools \
+        perl-timedate \
+        popt \
+        procps-ng \
+        psmisc \
+        shadow \
+        sudo \
+        systemd \
+        systemd-sysvcompat \
+        tar \
+        util-linux \
+        which
+
+CMD ["/bin/bash"]
