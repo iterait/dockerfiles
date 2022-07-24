@@ -13,7 +13,7 @@ references:
       name: Build all our x86 images.
       command: |
         # Enable Docker experimental features.
-        sudo sh -c 'echo '\''DOCKER_OPTS="--experimental=true"'\'' >> /etc/default/docker'
+        echo '{ "experimental": true }' | sudo tee /etc/docker/daemon.json
         sudo service docker restart
         # Build images.
         cd ./dockerfiles
