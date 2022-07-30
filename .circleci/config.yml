@@ -18,6 +18,7 @@ references:
         # Build images.
         cd ./dockerfiles
         ./build.sh
+      no_output_timeout: 20m
 
 jobs:
 
