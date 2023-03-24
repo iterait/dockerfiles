@@ -1,4 +1,5 @@
-FROM iterait/archlinux
+ARG tag="latest"
+FROM iterait/archlinux:"${tag}"
 MAINTAINER Iterait a.s. <docker@iterait.com>
 
 # install common packages
