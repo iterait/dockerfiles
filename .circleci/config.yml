@@ -37,10 +37,10 @@ workflows:
     jobs:
       - build
 
-  nightly:
+  weekly:
     triggers:
       - schedule:
-          cron: "48 1 * * *"
+          cron: "48 1 * * 6"
           filters:
             branches:
               only:
