@@ -23,7 +23,6 @@ RUN pacman --noconfirm -Syu --needed \
         netctl \
         openresolv \
         vi \
-        haveged \
         net-tools \
         openssh \
     && rm -rf /README 
@@ -39,7 +38,6 @@ RUN useradd -m -s /bin/bash aur \
     && echo 'aur ALL=(ALL) ALL' > /etc/sudoers.d/aur \
     && echo 'Defaults env_keep += "EDITOR"' >> /etc/sudoers.d/aur
 
-
 # remove all unnecessary packages
 RUN pacman --noconfirm -R \
         git \
@@ -51,23 +49,13 @@ RUN pacman --noconfirm -R \
         dbus \
         device-mapper \
         diffutils \
-        elfutils \
         fakeroot \
         file \
-        gawk \
-        gdbm \
-        gettext \
-        grep \
-        hwids \
-        icu \
         iproute2 \
         iptables \
         iputils \
-        json-c \
         kbd \
         kmod \
-        libcroco \
-        libelf \
         libmnl \
         libnetfilter_conntrack \
         libnfnetlink \
@@ -75,13 +63,11 @@ RUN pacman --noconfirm -R \
         libnl \
         libpcap \
         libseccomp \
-        libxml2 \
         licenses \
         linux-aarch64 \
         linux-firmware \
         mkinitcpio \
         mkinitcpio-busybox \
-        mpfr \
         pciutils \
         perl \
         perl-error \
