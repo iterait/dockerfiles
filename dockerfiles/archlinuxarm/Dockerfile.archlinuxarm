@@ -24,13 +24,10 @@ RUN pacman --noconfirm -Syu --needed \
         openresolv \
         vi \
         linux-firmware \
-        linux-raspberrypi \
-        raspberrypi-firmware \
+        linux-rpi \
+        firmware-raspberrypi \
         raspberrypi-bootloader \
-        raspberrypi-bootloader-x \
         wpa_supplicant \
-        crda \
-        haveged \
         wireless_tools \
         net-tools \
         openssh \
