@@ -6,7 +6,7 @@ Based on [archimg/archlinux](https://github.com/archimg/archlinux).
 Prerequisites (Arch Linux)
 ===
 ```
-sudo pacman -S qemu-headless qemu-headless-arch-extra docker
+sudo pacman -S qemu qemu-system-arm qemu-system-aarch64 qemu-user-static-binfmt docker
 ```
 
 Build
