@@ -7,7 +7,7 @@ URL="http://os.archlinuxarm.org/os"
 for imagename in archlinuxaarch64 archlinuxarm; do
     
     if [ "${imagename}" = "archlinuxarm" ]; then
-        IMAGE_TAR="ArchLinuxARM-rpi-2-latest.tar.gz"
+        IMAGE_TAR="ArchLinuxARM-rpi-armv7-latest.tar.gz"
     elif [ "${imagename}" = "archlinuxaarch64" ]; then
         IMAGE_TAR="ArchLinuxARM-aarch64-latest.tar.gz"
     else

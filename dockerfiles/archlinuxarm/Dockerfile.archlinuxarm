@@ -24,16 +24,17 @@ RUN pacman --noconfirm -Syu --needed \
         openresolv \
         vi \
         linux-firmware \
-        linux-raspberrypi \
-        raspberrypi-firmware \
+        linux-firmware-whence \
+        linux-rpi \
+        firmware-raspberrypi \
         raspberrypi-bootloader \
-        raspberrypi-bootloader-x \
+        raspberrypi-utils \
         wpa_supplicant \
-        crda \
-        haveged \
         wireless_tools \
         net-tools \
         openssh \
+    && pacman --noconfirm -S --needed \
+        binutils \
     && rm -rf /README 
 
 # set UTF-8 locale
@@ -51,11 +52,9 @@ RUN useradd -m -s /bin/bash aur \
 RUN git clone https://aur.archlinux.org/yay-bin.git \
     && chown -R aur:aur /yay-bin \
     && cd /yay-bin \
-    && sudo -u aur makepkg -si --needed --noconfirm \
+    && sudo -u aur makepkg -s --needed --noconfirm \
+    && pacman -U --needed --noconfirm yay-*.pkg.tar.* \
     && cd / \
     && rm -rf /yay-bin
-
-# configure `yay` to remove build cache and make dependencies
-RUN sudo -u aur yay --cleanafter --removemake --save
 
 CMD ["/bin/bash"]
