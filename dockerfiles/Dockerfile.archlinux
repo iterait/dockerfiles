@@ -29,7 +29,8 @@ RUN useradd -m -s /bin/bash aur \
 RUN git clone https://aur.archlinux.org/yay-bin.git \
     && chown -R aur:aur /yay-bin \
     && cd /yay-bin \
-    && sudo -u aur makepkg -si --needed --noconfirm \
+    && sed -r 's/OPTIONS=(.*) debug (.*)/OPTIONS=\1 !debug \2/g' < /etc/makepkg.conf > makepkg.conf \
+    && sudo -u aur makepkg -si --needed --noconfirm --config makepkg.conf \
     && cd / \
     && rm -rf /yay-bin
 
