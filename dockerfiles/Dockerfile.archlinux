@@ -1,5 +1,5 @@
 FROM scratch
-MAINTAINER Iterait a.s. <docker@iterait.com>
+LABEL maintainer="Iterait a.s. <docker@iterait.com>"
 
 COPY --from=archlinux:latest / /
 # add cleanup hook
