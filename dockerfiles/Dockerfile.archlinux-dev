@@ -1,6 +1,6 @@
 ARG tag="latest"
 FROM iterait/archlinux:"${tag}"
-MAINTAINER Iterait a.s. <docker@iterait.com>
+LABEL maintainer="Iterait a.s. <docker@iterait.com>"
 
 # install common packages
 RUN pacman --noconfirm --needed -Syu \

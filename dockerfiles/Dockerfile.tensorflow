@@ -1,6 +1,6 @@
 ARG tag="latest"
 FROM iterait/archlinux:"${tag}"
-MAINTAINER Iterait a.s. <docker@iterait.com>
+LABEL maintainer="Iterait a.s. <docker@iterait.com>"
 
 ARG tag
 RUN if [ "${tag}" = "cuda" ]; then \
