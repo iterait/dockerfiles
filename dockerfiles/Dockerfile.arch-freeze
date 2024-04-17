@@ -8,10 +8,10 @@ ADD 99-cleanup.hook /usr/share/libalpm/hooks/
 
 # freeze Arch to specific date
 ARG FREEZE_DATE
-
-RUN sed -i '/^\[core\]$/,/^$/c\[core]\nSigLevel = PackageRequired\nServer=https://archive.archlinux.org/repos/'$FREEZE_DATE'/$repo/os/$arch\n' /etc/pacman.conf
-RUN sed -i '/^\[extra\]$/,/^$/c\[extra]\nSigLevel = PackageRequired\nServer=https://archive.archlinux.org/repos/'$FREEZE_DATE'/$repo/os/$arch\n' /etc/pacman.conf
-
+RUN test -n "$FREEZE_DATE" || (echo "Error: FREEZE_DATE argument is required" && false)
+RUN export FREEZE_DATE_SLASHES="$(echo $FREEZE_DATE | sed 's/-/\//g')" && \
+    sed -i '/^\[core\]$/,/^$/c\[core]\nSigLevel = PackageRequired\nServer=https://archive.archlinux.org/repos/'$FREEZE_DATE_SLASHES'/$repo/os/$arch\n' /etc/pacman.conf && \
+    sed -i '/^\[extra\]$/,/^$/c\[extra]\nSigLevel = PackageRequired\nServer=https://archive.archlinux.org/repos/'$FREEZE_DATE_SLASHES'/$repo/os/$arch\n' /etc/pacman.conf
 RUN pacman -Syyuu --noconfirm
 
 # install common packages
