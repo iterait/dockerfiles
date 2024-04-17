@@ -11,7 +11,7 @@ inputs:
     description: 'Docker username'
     required: true
   dockerhub_token:
-    description: Docker password
+    description: Docker token
     required: true
 runs:
   using: composite

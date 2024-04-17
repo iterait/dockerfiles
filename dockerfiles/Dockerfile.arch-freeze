@@ -7,7 +7,7 @@ ADD 99-cleanup.hook /usr/share/libalpm/hooks/
 
 
 # freeze Arch to specific date
-ARG FREEZE_DATE='2024/04/07'
+ARG FREEZE_DATE
 
 RUN sed -i '/^\[core\]$/,/^$/c\[core]\nSigLevel = PackageRequired\nServer=https://archive.archlinux.org/repos/'$FREEZE_DATE'/$repo/os/$arch\n' /etc/pacman.conf
 RUN sed -i '/^\[extra\]$/,/^$/c\[extra]\nSigLevel = PackageRequired\nServer=https://archive.archlinux.org/repos/'$FREEZE_DATE'/$repo/os/$arch\n' /etc/pacman.conf
