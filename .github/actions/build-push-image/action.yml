@@ -1,0 +1,36 @@
+name: 'Build and push docker image'
+description: 'Build our dockerfile'
+inputs:
+  imgname:
+    description: 'Name of the image to build'
+    required: true
+  build_cuda:
+    description: 'Flag to indicate whether to build with CUDA support'
+    required: true
+  dockerhub_token_user:
+    description: 'Docker username'
+    required: true
+  dockerhub_token:
+    description: Docker token
+    required: true
+runs:
+  using: composite
+  steps:
+    - run: |
+        TODAY=$(date +'%Y-%m-%d')
+        cd dockerfiles
+        sudo docker login -u ${dockerhub_token_user} -p ${dockerhub_token}
+        sudo docker build -f Dockerfile.${imgname} --rm --no-cache --build-arg "FREEZE_DATE=${TODAY}" -t "iterait/${imgname}:${TODAY}" -t "iterait/${imgname}:latest" --squash .
+        sudo docker push iterait/${imgname}:latest
+        sudo docker push iterait/${imgname}:"${TODAY}"
+        if [ "${build_cuda}" == "true" ]; then
+          sudo docker build -f Dockerfile.${imgname} --rm --no-cache --build-arg "FREEZE_DATE=${TODAY}" --build-arg tag="cuda" -t "iterait/${imgname}:cuda_${TODAY}" -t "iterait/${imgname}:cuda" --squash .
+          sudo docker push iterait/${imgname}:cuda
+          sudo docker push iterait/${imgname}:"cuda_${TODAY}"
+        fi
+      shell: bash
+      env:
+        imgname: ${{ inputs.imgname }}
+        build_cuda: ${{ inputs.build_cuda }}
+        dockerhub_token_user: ${{ inputs.dockerhub_token_user }}
+        dockerhub_token: ${{ inputs.dockerhub_token }}

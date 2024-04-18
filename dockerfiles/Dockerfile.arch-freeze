@@ -1,0 +1,47 @@
+FROM scratch
+LABEL maintainer="Iterait a.s. <docker@iterait.com>"
+
+COPY --from=archlinux:latest / /
+# add cleanup hook
+ADD 99-cleanup.hook /usr/share/libalpm/hooks/
+
+
+# freeze Arch to specific date
+ARG FREEZE_DATE
+RUN test -n "$FREEZE_DATE" || (echo "Error: FREEZE_DATE argument is required" && false)
+RUN export FREEZE_DATE_SLASHES="$(echo $FREEZE_DATE | sed 's/-/\//g')" && \
+    sed -i '/^\[core\]$/,/^$/c\[core]\nSigLevel = PackageRequired\nServer=https://archive.archlinux.org/repos/'$FREEZE_DATE_SLASHES'/$repo/os/$arch\n' /etc/pacman.conf && \
+    sed -i '/^\[extra\]$/,/^$/c\[extra]\nSigLevel = PackageRequired\nServer=https://archive.archlinux.org/repos/'$FREEZE_DATE_SLASHES'/$repo/os/$arch\n' /etc/pacman.conf
+RUN pacman -Syyuu --noconfirm
+
+# install common packages
+RUN pacman --noconfirm --needed -Syu \
+        binutils \
+        fakeroot \
+        git \
+        sudo
+
+ENV EDITOR vim
+
+# set UTF-8 locale
+RUN echo 'en_US.UTF-8 UTF-8' > /etc/locale.gen && locale-gen
+RUN echo 'LANG=en_US.UTF-8' > /etc/locale.conf
+ENV LANG en_US.UTF-8
+
+# setup user `aur`
+RUN useradd -m -s /bin/bash aur \
+    && passwd -d aur \
+    && echo 'aur ALL=(ALL) ALL' > /etc/sudoers.d/aur \
+    && echo 'Defaults env_keep += "EDITOR"' >> /etc/sudoers.d/aur
+
+# install `yay`
+RUN git clone https://aur.archlinux.org/yay-bin.git \
+    && chown -R aur:aur /yay-bin \
+    && cd /yay-bin \
+    && sed -r 's/OPTIONS=(.*) debug (.*)/OPTIONS=\1 !debug \2/g' < /etc/makepkg.conf > makepkg.conf \
+    && sudo -u aur makepkg -si --needed --noconfirm --config makepkg.conf \
+    && cd / \
+    && rm -rf /yay-bin
+
+# configure `yay` to remove build cache and make dependencies
+RUN sudo -u aur yay --cleanafter --removemake --save

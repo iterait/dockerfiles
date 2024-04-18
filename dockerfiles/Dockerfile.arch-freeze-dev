@@ -1,0 +1,18 @@
+ARG tag=latest
+FROM iterait/arch-freeze:"${tag}"
+LABEL maintainer="Iterait a.s. <docker@iterait.com>"
+
+# install common packages
+RUN pacman --noconfirm --needed -Syu \
+      base-devel \
+      cmake \
+      vim \
+      clang \
+      ninja \
+      python \
+      python-pip \
+    && find /usr/lib/guile -name "*.go" | xargs rm
+
+ENV EDITOR vim
+
+CMD ["/bin/bash"]
