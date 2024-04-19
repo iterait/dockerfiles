@@ -2,7 +2,7 @@ name: Docker Images Build
 
 on:
   schedule:
-    - cron:  '0 3 * * *'
+    - cron:  '0 21 * * *'
   push:
     branches:
       - 'master'
