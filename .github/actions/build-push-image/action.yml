@@ -19,14 +19,14 @@ runs:
     - run: |
         TODAY=$(date +'%Y-%m-%d')
         cd dockerfiles
-        sudo docker login -u ${dockerhub_token_user} -p ${dockerhub_token}
-        sudo docker build -f Dockerfile.${imgname} --rm --no-cache --build-arg "FREEZE_DATE=${TODAY}" -t "iterait/${imgname}:${TODAY}" -t "iterait/${imgname}:latest" --squash .
-        sudo docker push iterait/${imgname}:latest
-        sudo docker push iterait/${imgname}:"${TODAY}"
+        docker login -u ${dockerhub_token_user} -p ${dockerhub_token}
+        docker build -f Dockerfile.${imgname} --rm --no-cache --build-arg "FREEZE_DATE=${TODAY}" -t "iterait/${imgname}:${TODAY}" -t "iterait/${imgname}:latest" --squash .
+        docker push iterait/${imgname}:latest
+        docker push iterait/${imgname}:"${TODAY}"
         if [ "${build_cuda}" == "true" ]; then
-          sudo docker build -f Dockerfile.${imgname} --rm --no-cache --build-arg "FREEZE_DATE=${TODAY}" --build-arg tag="cuda" -t "iterait/${imgname}:cuda_${TODAY}" -t "iterait/${imgname}:cuda" --squash .
-          sudo docker push iterait/${imgname}:cuda
-          sudo docker push iterait/${imgname}:"cuda_${TODAY}"
+          docker build -f Dockerfile.${imgname} --rm --no-cache --build-arg "FREEZE_DATE=${TODAY}" --build-arg tag="cuda" -t "iterait/${imgname}:cuda_${TODAY}" -t "iterait/${imgname}:cuda" --squash .
+          docker push iterait/${imgname}:cuda
+          docker push iterait/${imgname}:"cuda_${TODAY}"
         fi
       shell: bash
       env:
