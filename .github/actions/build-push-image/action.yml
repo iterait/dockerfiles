@@ -17,7 +17,8 @@ runs:
   using: composite
   steps:
     - run: |
-        TODAY=$(date +'%Y-%m-%d')
+        # TODAY=$(date +'%Y-%m-%d')
+        TODAY=2024-10-09
         cd dockerfiles
         docker login -u ${dockerhub_token_user} -p ${dockerhub_token}
         docker build -f Dockerfile.${imgname} --rm --no-cache --build-arg "FREEZE_DATE=${TODAY}" -t "iterait/${imgname}:${TODAY}" -t "iterait/${imgname}:latest" --squash .
