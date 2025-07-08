@@ -17,16 +17,16 @@ runs:
   using: composite
   steps:
     - run: |
-        TODAY=$(date +'%Y-%m-%d')
+        ARCHIVE_DATE=$(date -d '5 days ago' +'%Y-%m-%d')
         cd dockerfiles
         sudo docker login -u ${dockerhub_token_user} -p ${dockerhub_token}
-        sudo docker build -f Dockerfile.${imgname} --rm --no-cache --build-arg "FREEZE_DATE=${TODAY}" -t "iterait/${imgname}:${TODAY}" -t "iterait/${imgname}:latest" --squash .
+        sudo docker build -f Dockerfile.${imgname} --rm --no-cache --build-arg "FREEZE_DATE=${ARCHIVE_DATE}" -t "iterait/${imgname}:${ARCHIVE_DATE}" -t "iterait/${imgname}:latest" --squash .
         sudo docker push iterait/${imgname}:latest
-        sudo docker push iterait/${imgname}:"${TODAY}"
+        sudo docker push iterait/${imgname}:"${ARCHIVE_DATE}"
         if [ "${build_cuda}" == "true" ]; then
-          sudo docker build -f Dockerfile.${imgname} --rm --no-cache --build-arg "FREEZE_DATE=${TODAY}" --build-arg tag="cuda" -t "iterait/${imgname}:cuda_${TODAY}" -t "iterait/${imgname}:cuda" --squash .
+          sudo docker build -f Dockerfile.${imgname} --rm --no-cache --build-arg "FREEZE_DATE=${ARCHIVE_DATE}" --build-arg tag="cuda" -t "iterait/${imgname}:cuda_${ARCHIVE_DATE}" -t "iterait/${imgname}:cuda" --squash .
           sudo docker push iterait/${imgname}:cuda
-          sudo docker push iterait/${imgname}:"cuda_${TODAY}"
+          sudo docker push iterait/${imgname}:"cuda_${ARCHIVE_DATE}"
         fi
       shell: bash
       env:

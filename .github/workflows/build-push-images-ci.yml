@@ -14,7 +14,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Build 
+      - name: Build
         uses: ./.github/actions/build-push-image
         with:
           imgname: archlinux
@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Build 
+      - name: Build
         uses: ./.github/actions/build-push-image
         with:
           imgname: archlinux-dev
@@ -42,7 +42,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Build 
+      - name: Build
         uses: ./.github/actions/build-push-image
         with:
           imgname: tensorflow
@@ -55,7 +55,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Build 
+      - name: Build
         uses: ./.github/actions/build-push-image
         with:
           imgname: arch-freeze
@@ -69,7 +69,7 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-      - name: Build 
+      - name: Build
         uses: ./.github/actions/build-push-image
         with:
           imgname: arch-freeze-dev
