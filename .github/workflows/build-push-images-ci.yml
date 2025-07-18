@@ -36,20 +36,6 @@ jobs:
           dockerhub_token_user: ${{ secrets.DOCKERHUB_TOKEN_USER }}
           dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
 
-  build_tensorflow:
-    needs: build_archlinux
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-      - name: Build
-        uses: ./.github/actions/build-push-image
-        with:
-          imgname: tensorflow
-          build_cuda: true
-          dockerhub_token_user: ${{ secrets.DOCKERHUB_TOKEN_USER }}
-          dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
-
   build_arch-freeze:
     runs-on: ubuntu-latest
     steps:
